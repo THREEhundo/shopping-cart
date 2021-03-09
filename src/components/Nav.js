@@ -1,7 +1,10 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 // May need to delete search component and make it a function here.
 
+// NavLink prevents default call to the server, react-router-dom to render correct data.
+// Also allows you to style active links
 const Nav = (props) => {
   return (
     <nav>
@@ -9,10 +12,14 @@ const Nav = (props) => {
         <a href="/">One Air</a>
         <ul>
           <li>
-            <a href="/home">Home</a>
+            <NavLink Link to="/home">
+              Home
+            </NavLink>
           </li>
           <li>
-            <a href="/catalogue">Catalogue</a>
+            <NavLink NavLink to="/ProductsAll">
+              Catalogue
+            </NavLink>
           </li>
           <li>
             <input type="search"></input>

@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  li {
+    @apply inline-block;
+    @apply w-auto;
+    /* @apply mx-5; */
+  }
+}

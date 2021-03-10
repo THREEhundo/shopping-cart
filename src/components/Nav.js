@@ -11,11 +11,11 @@ const Nav = (props) => {
       <div>
         <ul>
           <li className="ml-0 text-2xl">
-            <a href="/">One Air</a>
+            <a href="/">Rare Air</a>
           </li>
           <div className="float-right">
             <li className="mr-3">
-              <NavLink to="/home">Home</NavLink>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li className="mr-auto">
               <NavLink to="/ProductsAll">Catalogue</NavLink>

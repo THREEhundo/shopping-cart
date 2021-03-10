@@ -63,15 +63,13 @@ const App = () => {
     fetchData();
   }, []);
 
-  console.log(sneakerDB);
-
   return (
     <BrowserRouter>
       <div className="App">
         <Nav />
         <Switch>
           {/* <Route extact path="/" component={App} /> */}
-          <Route exact path="/home" component={Home} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/catalogue" component={ProductsAll} />
         </Switch>
         {/* <ShoppingCart />

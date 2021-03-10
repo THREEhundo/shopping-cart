@@ -1,6 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { Route, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 // May need to delete search component and make it a function here.
 
@@ -15,7 +14,7 @@ const Nav = (props) => {
             <a href="/">One Air</a>
           </li>
           <div className="float-right">
-            <li className="">
+            <li className="mr-3">
               <NavLink to="/home">Home</NavLink>
             </li>
             <li className="mr-auto">

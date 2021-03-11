@@ -29,8 +29,21 @@ const App = () => {
     */
     function parseData(res) {
       const { results } = res;
-      return results.map((snkr) => {
-        // console.log(snkr.media);
+
+      return results.filter((snkr) => {
+        let url = snkr.media.imageUrl;
+        const { shoe, gender } = snkr;
+        return (
+          url !== null &&
+          !url.includes("Placeholder") &&
+          shoe.includes("Jordan 1 Retro High") &&
+          gender.includes("men")
+        );
+      });
+    }
+
+    function neededProps(arr) {
+      return arr.map((snkr) => {
         return {
           colorway: snkr.colorway,
           id: snkr.id,
@@ -46,24 +59,24 @@ const App = () => {
         };
       });
     }
+
     async function fetchData() {
       try {
         const url =
-          "https://api.thesneakerdatabase.com/v1/sneakers?limit=10&name=air%20jordan%201%20high&brand=jordan";
+          "https://api.thesneakerdatabase.com/v1/sneakers?limit=50&name=air%20jordan%201%20high&brand=jordan";
 
         const fetched = await fetch(url);
         const res = await fetched.json();
         const trunkData = parseData(res);
-        // console.log(res);
-        // console.log(trunkData);
-        setSneakerDB(trunkData);
+        const finalList = neededProps(trunkData);
+        setSneakerDB(finalList);
       } catch (error) {
         console.log(error);
       }
     }
     fetchData();
   }, []);
-  // console.log(sneakerDB);
+
   return (
     <BrowserRouter>
       <div className="App">

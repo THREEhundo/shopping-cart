@@ -4,7 +4,12 @@ module.exports = {
   theme: {
     backgroundColor: (theme) => ({
       primary: "#ffc6c5",
+      secondary: "#ffffff",
     }),
+    textColor: {
+      primary: "#ffc6c5",
+      secondary: "#ffffff",
+    },
     container: {
       center: true,
     },
@@ -15,7 +20,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      ringColor: ["hover", "active"],
+    },
   },
   plugins: [],
 };

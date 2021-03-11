@@ -79,7 +79,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="bg-primary text-secondary px-1">
         <Nav />
         <Switch>
           {/* <Route extact path="/" component={App} /> */}

@@ -18,7 +18,7 @@ const Nav = (props) => {
               <NavLink to="/">Home</NavLink>
             </li>
             <li className="mr-auto">
-              <NavLink to="/ProductsAll">Catalogue</NavLink>
+              <NavLink to="/catalogue">Catalogue</NavLink>
             </li>
             {/* <li classList="">
               <input className="" type="search"></input>

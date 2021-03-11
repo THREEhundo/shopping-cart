@@ -1,7 +1,37 @@
 import React from "react";
 
 const ProductsAll = (props) => {
-  return <div>Div</div>;
+  const { sneakerDB } = props;
+
+  function cardStructure(props) {
+    return sneakerDB.map((snkr) => {
+      return (
+        <div key={snkr.id} className="w-3/12 h-1/5">
+          <img alt="snkrImg" src={snkr.img.smallImg}></img>
+          <h2>{snkr.shoe}</h2>
+          <h2>"{snkr.name}"</h2>
+          <p>Released: {snkr.releaseDate}</p>
+          <p>
+            Since his game-winning shot that brought championship glory to North
+            Carolina, Michael Jordan has been at the forefront of basketball
+            consciousness. He took the court in 1985 wearing the original Air
+            Jordan I, simultaneously breaking league rules and his opponents'
+            will while capturing the imagination of fans worldwide.
+          </p>
+        </div>
+      );
+    });
+  }
+
+  const buildCards = cardStructure(props);
+
+  return (
+    <div className="flex flex-column h-screen bg-primary">
+      <div id="cards" className="flex flex-wrap">
+        {buildCards}
+      </div>
+    </div>
+  );
 };
 
 export default ProductsAll;

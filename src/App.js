@@ -30,6 +30,7 @@ const App = () => {
     function parseData(res) {
       const { results } = res;
       return results.map((snkr) => {
+        // console.log(snkr.media);
         return {
           colorway: snkr.colorway,
           id: snkr.id,
@@ -62,15 +63,19 @@ const App = () => {
     }
     fetchData();
   }, []);
-
+  // console.log(sneakerDB);
   return (
     <BrowserRouter>
       <div className="App">
         <Nav />
         <Switch>
           {/* <Route extact path="/" component={App} /> */}
-          <Route exact path="/" component={Home} />
-          <Route exact path="/catalogue" component={ProductsAll} />
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/catalogue">
+            <ProductsAll sneakerDB={sneakerDB} />
+          </Route>
         </Switch>
         {/* <ShoppingCart />
         <Search /> */}

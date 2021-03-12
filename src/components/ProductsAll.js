@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useFetch from "./useFetch";
-// import ProductSingle from "./components/ProductSingle";
 
-const ProductsAll = (props) => {
+const ProductsAll = () => {
   const { data, error, isPending } = useFetch(
     "https://api.thesneakerdatabase.com/v1/sneakers?limit=50&name=air%20jordan%201%20high&brand=jordan"
   );
@@ -11,12 +10,13 @@ const ProductsAll = (props) => {
   function cardStructure() {
     if (data) {
       return data.map((snkr) => {
+        console.log(snkr.linkID);
         return (
           <div
             key={snkr.id}
             className="flex flex-col self-center justify-evenly rounded-lg border-2 border-white w-11/12 h-auto py-2 px-2 my-2 mx-auto"
           >
-            <Link to={`/catalogue/${snkr.id}`}>
+            <Link to={`/catalogue/${snkr.linkID}`}>
               <img
                 className="rounded-t-xl"
                 alt="snkrImg"

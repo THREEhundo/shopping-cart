@@ -30,7 +30,7 @@ const App = () => {
           <Route exact path="/catalogue">
             <ProductsAll />
           </Route>
-          <Route exact path="/catalogue/:id">
+          <Route exact path="/catalogue/:linkID">
             <ProductSingle />
           </Route>
         </Switch>

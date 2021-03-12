@@ -31,7 +31,8 @@ const useFetch = (url) => {
       return arr.map((snkr) => {
         return {
           colorway: snkr.colorway,
-          id: formatName(snkr.name),
+          linkID: formatName(snkr.name),
+          id: snkr.id,
           img: {
             bigImg: snkr.media.imageUrl,
             smallImg: snkr.media.smallImageUrl,

@@ -8,17 +8,6 @@ const ProductSingle = (props) => {
     "https://api.thesneakerdatabase.com/v1/sneakers?limit=50&name=air%20jordan%201%20high&brand=jordan"
   );
 
-  // const singleCard = () => {
-  //   if (id) {
-  //     return data.map(snkr => {
-  //       return (
-  //         <div key={snkr.linkID}>
-  //
-  //         </div>
-  //       )
-  //     })
-  //   }
-  // }
   const pickSnkr = () => {
     let mod;
     if (data) {
@@ -52,7 +41,13 @@ const ProductSingle = (props) => {
 
   const snkrView = pickSnkr();
 
-  return <div>{snkrView}</div>;
+  return (
+    <div>
+      {isPending && <div>Loading...</div>}
+      {error && <div>{error}</div>}
+      {data && snkrView}
+    </div>
+  );
 };
 
 export default ProductSingle;

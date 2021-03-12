@@ -12,9 +12,9 @@ const ProductSingle = (props) => {
     let mod;
     if (data) {
       const copy = data.map((x) => x);
-      const snkr = copy.reduce((x) => (x.linkID === linkID ? x : null));
+      const snkr = copy.find((x) => x.linkID === linkID);
       mod = (
-        <div>
+        <div className="h-screen p-5">
           <img
             className="rounded-t-xl"
             alt="snkrImg"
@@ -39,6 +39,7 @@ const ProductSingle = (props) => {
     return mod;
   };
 
+  pickSnkr();
   const snkrView = pickSnkr();
 
   return (

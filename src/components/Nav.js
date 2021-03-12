@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../imgs/logo.png";
 
 // May need to delete search component and make it a function here.
@@ -12,16 +12,16 @@ const Nav = (props) => {
       <div>
         <ul>
           <li className="ml-0 w-20">
-            <a href="/">
+            <Link href="/">
               <img src={logo} alt="logo"></img>
-            </a>
+            </Link>
           </li>
           <div className="float-right">
             <li className="mr-3">
-              <NavLink to="/">Home</NavLink>
+              <Link to="/">Home</Link>
             </li>
             <li className="mr-auto">
-              <NavLink to="/catalogue">Catalogue</NavLink>
+              <Link to="/catalogue">Catalogue</Link>
             </li>
             {/* <li classList="">
               <input className="" type="search"></input>

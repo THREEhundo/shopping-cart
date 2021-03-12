@@ -7,9 +7,12 @@ const ProductsAll = (props) => {
     if (sneakerDB !== null) {
       return sneakerDB.map((snkr) => {
         return (
-          <div key={snkr.id} className="w-2/4 h-auto px-1">
+          <div
+            key={snkr.id}
+            className="flex flex-col self-center justify-evenly rounded-lg border-2 border-white w-11/12 h-auto py-2 px-2 my-2 mx-auto"
+          >
             <img
-              className="rounded"
+              className="rounded-t-xl"
               alt="snkrImg"
               src={snkr.img.smallImg}
             ></img>
@@ -36,8 +39,8 @@ const ProductsAll = (props) => {
   const buildCards = cardStructure(props);
 
   return (
-    <div className="flex flex-column h-full">
-      <div id="cards" className="flex flex-wrap">
+    <div className="h-full my-10">
+      <div id="cards" className="">
         {buildCards}
       </div>
     </div>

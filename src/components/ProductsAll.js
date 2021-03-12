@@ -4,13 +4,9 @@ import useFetch from "./useFetch";
 // import ProductSingle from "./components/ProductSingle";
 
 const ProductsAll = (props) => {
-  // const [snkrsDB, setSnkrsDB] = useState(null);
-
   const { data, error, isPending } = useFetch(
     "https://api.thesneakerdatabase.com/v1/sneakers?limit=50&name=air%20jordan%201%20high&brand=jordan"
   );
-
-  // setSnkrsDB(nP);
 
   function cardStructure() {
     if (data) {

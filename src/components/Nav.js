@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../imgs/logo.png";
 
-// May need to delete search component and make it a function here.
-
 // NavLink prevents default call to the server, react-router-dom to render correct data.
 // Also allows you to style active links
 const Nav = (props) => {
@@ -12,7 +10,7 @@ const Nav = (props) => {
       <div>
         <ul>
           <li className="ml-0 w-20">
-            <Link href="/">
+            <Link to="/">
               <img src={logo} alt="logo"></img>
             </Link>
           </li>

@@ -2,8 +2,8 @@ import React from "react";
 
 const Home = (props) => {
   return (
-    <div className="flex flex-column h-screen w-auto">
-      <div className="bg-hero-pattern bg-cover bg-center w-screen">
+    <div className="flex flex-column h-screen w-auto min-w-max">
+      <div className="flex-initial bg-hero-pattern bg-cover bg-center w-screen">
         <div>
           <h2 className="text-xl">Air Jordan 1</h2>
           <p className="text-sm">

@@ -10,7 +10,6 @@ const ProductsAll = () => {
   function cardStructure() {
     if (data) {
       return data.map((snkr) => {
-        console.log(snkr.linkID);
         return (
           <div
             key={snkr.id}

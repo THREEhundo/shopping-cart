@@ -9,3 +9,7 @@
     /* @apply mx-5; */
   }
 }
+
+#root {
+  height: 100vh;
+}

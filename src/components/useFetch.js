@@ -53,6 +53,7 @@ const useFetch = (url) => {
         const res = await fetched.json();
         const parsed = parseData(res);
         const needed = neededProps(parsed);
+        console.log(needed);
         setData(needed);
         setIsPending(false);
         setError(null);

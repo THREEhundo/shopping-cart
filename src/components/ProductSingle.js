@@ -43,7 +43,7 @@ const ProductSingle = (props) => {
   const snkrView = pickSnkr();
 
   return (
-    <div>
+    <div className="h-screen">
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
       {data && snkrView}

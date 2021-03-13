@@ -6,7 +6,7 @@ import logo from "../imgs/logo.png";
 // Also allows you to style active links
 const Nav = (props) => {
   return (
-    <nav>
+    <nav className="border-b-4 border-white">
       <div>
         <ul>
           <li className="ml-0 w-20">

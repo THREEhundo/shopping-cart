@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../imgs/logo.png";
+import cartLogo from "../imgs/shopping-bag.png";
 import ShoppingCart from "./ShoppingCart";
 
 // NavLink prevents default call to the server, react-router-dom to render correct data.
 // Also allows you to style active links
 const Nav = (props) => {
+  const [showShoppingCart, setShowShoppingCart] = useState(false);
+
+  const openModal = () => {
+    console.log(showShoppingCart);
+    setShowShoppingCart((prev) => !prev);
+  };
+
+  const ShoppingCartBtn = () => {
+    return (
+      <div>
+        <div id="cart_total"></div>
+        <button onClick={openModal}>
+          <img className="w-6 filter-white" alt="cart" src={cartLogo}></img>
+        </button>
+        <ShoppingCart
+          showShoppingCart={showShoppingCart}
+          setShowShoppingCart={setShowShoppingCart}
+        />
+      </div>
+    );
+  };
+
   return (
     <nav className="border-b-4 border-white">
       <div>
@@ -23,7 +46,7 @@ const Nav = (props) => {
               <Link to="/catalogue">Catalogue</Link>
             </li>
             <li>
-              <ShoppingCart />
+              <ShoppingCartBtn />
             </li>
           </div>
         </ul>

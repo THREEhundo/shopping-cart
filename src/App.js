@@ -11,11 +11,6 @@ import ProductSingle from "./components/ProductSingle";
 // Create useFetch hook
 
 const App = () => {
-  // const [sneakerDB, setSneakerDB] = useState(null);
-  // const db = useFetch(
-  //   "https://api.thesneakerdatabase.com/v1/sneakers?limit=50&name=air%20jordan%201%20high&brand=jordan"
-  // );
-  // setSneakerDB(db);
   return (
     <Router>
       <div className="bg-primary text-secondary px-1">

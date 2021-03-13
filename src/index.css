@@ -10,6 +10,8 @@
   }
 }
 
-#root {
-  height: 100vh;
+@layer utilities {
+  .filter-white {
+    filter: invert(1);
+  }
 }

@@ -20,8 +20,9 @@ const ProductSingle = (props) => {
             alt="snkrImg"
             src={snkr.img.smallImg}
           ></img>
-          <h2 className="text-lg">{snkr.shoe}</h2>
-          <h2 className="text-base">"{snkr.name}"</h2>
+          <h2 className="text-3xl">{snkr.shoe}</h2>
+          <h2 className="text-3xl">"{snkr.name}"</h2>
+          <h2 className="text-3xl">${snkr.retailPrice}</h2>
           <p className="text-xs">Released: {snkr.releaseDate}</p>
           <p className="text-xs">
             Since his game-winning shot that brought championship glory to North

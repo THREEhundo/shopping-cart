@@ -14,4 +14,7 @@
   .filter-white {
     filter: invert(1);
   }
+  .viewFont {
+    font-size: 9vw;
+  }
 }

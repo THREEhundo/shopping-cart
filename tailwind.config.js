@@ -12,6 +12,7 @@ module.exports = {
     backgroundColor: (theme) => ({
       primary: "#ffc6c5",
       secondary: "#ffffff",
+      opblack: "rgba(0, 0, 0, 0.8)",
     }),
     textColor: {
       primary: "#ffc6c5",

@@ -16,22 +16,19 @@ const App = () => {
   const [shoppingCartItems, setShoppingCartItems] = useState([]);
   // Shopping cart items -> id of item & amount of each
 
+  const openModal = () => {
+    setShowShoppingCart((prev) => !prev);
+  };
+
   // Click handler for all buy buttons
   const handleClick = (e, snkr) => {
     e.preventDefault();
     shoppingCartItems.length > -1
       ? setShoppingCartItems([...shoppingCartItems, snkr])
       : setShoppingCartItems([snkr]);
-    // shoppingCartItems === undefined
-    //   ? setShoppingCartItems(snkr)
-    //   : setShoppingCartItems(...shoppingCartItems, snkr);
-    //animation & visual of increase in total amount of items\
 
-    // console.log(shoppingCartItems);
-  };
-  // console.log(handleClick());
-  const openModal = () => {
-    setShowShoppingCart((prev) => !prev);
+    openModal();
+    //animation & visual of increase in total amount of items\
   };
 
   return (

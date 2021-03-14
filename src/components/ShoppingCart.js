@@ -13,23 +13,27 @@ Modal includes
 2. Subtotal
 3. Checkout button
 */
-
-const Modal = () => {
-  return (
-    <div className="container h-full bg-opblack bg-black flex flex-col fixed">
-      SHOPPING MODAL
-      <div className="w-5/12 h-full bg-secondary self-end flex shadow-inner z-10">
-        <h1 className="viewFont text-center text-primary flex-shrink">
-          Shopping Cart
-        </h1>
+const ShoppingCart = ({
+  showShoppingCart,
+  setShoppingCart,
+  shoppingCartItems = {},
+  setShoppingCartItems,
+}) => {
+  const Modal = () => {
+    return (
+      <div className="container h-full bg-opblack bg-black flex flex-col fixed">
+        SHOPPING MODAL
+        <div className="w-5/12 h-full bg-secondary self-end flex shadow-inner z-10">
+          <h1 className="viewFont text-center text-primary flex-shrink">
+            Shopping Cart
+          </h1>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
-const showModal = Modal();
+  const showModal = Modal();
 
-const ShoppingCart = ({ showShoppingCart, setShoppingCart }) => {
   return <div>{showShoppingCart ? showModal : null}</div>;
 };
 

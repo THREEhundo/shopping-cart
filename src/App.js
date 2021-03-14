@@ -14,6 +14,7 @@ import ShoppingCart from "./components/ShoppingCart";
 const App = () => {
   const [showShoppingCart, setShowShoppingCart] = useState(false);
   const [shoppingCartItems, setShoppingCartItems] = useState([]);
+  const EMPTY_CART = { shoppingCartItems: [] };
   // Shopping cart items -> id of item & amount of each
 
   const openModal = () => {
@@ -37,6 +38,9 @@ const App = () => {
         <ShoppingCart
           showShoppingCart={showShoppingCart}
           setShowShoppingCart={setShowShoppingCart}
+          shoppingCartItems={shoppingCartItems}
+          setShoppingCartItems={setShoppingCartItems}
+          EMPTY_CART={EMPTY_CART}
         />
         <Nav openModal={openModal} />
         <Switch>

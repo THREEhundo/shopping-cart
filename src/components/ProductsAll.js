@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import useFetch from "./useFetch";
 
-const ProductsAll = () => {
+const ProductsAll = (props) => {
   const { data, error, isPending } = useFetch(
     "https://api.thesneakerdatabase.com/v1/sneakers?limit=50&name=air%20jordan%201%20high&brand=jordan"
   );
+  const { handleClick } = props;
 
-  function cardStructure() {
+  function cardStructure(props) {
     if (data) {
       return data.map((snkr) => {
         return (
@@ -33,7 +34,10 @@ const ProductsAll = () => {
               his opponents' will while capturing the imagination of fans
               worldwide.
             </p>
-            <button className="bg-secondary text-primary rounded-lg ring-4 ring-white my-2 rounded-full py-1 px-2 hover:text-secondary hover:bg-primary hover:ring-white focus:outline-none focus:bg-primary focus:ring-white focus:text-secondary">
+            <button
+              className="bg-secondary text-primary rounded-lg ring-4 ring-white my-2 rounded-full py-1 px-2 hover:text-secondary hover:bg-primary hover:ring-white focus:outline-none focus:bg-primary focus:ring-white focus:text-secondary"
+              onClick={handleClick}
+            >
               Buy
             </button>
           </div>

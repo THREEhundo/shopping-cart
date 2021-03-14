@@ -13,9 +13,24 @@ import ShoppingCart from "./components/ShoppingCart";
 
 const App = () => {
   const [showShoppingCart, setShowShoppingCart] = useState(false);
+  const [shoppingCartItems, setShoppingCartItems] = useState([]);
+  // Shopping cart items -> id of item & amount of each
 
+  // Click handler for all buy buttons
+  const handleClick = (e, snkr) => {
+    e.preventDefault();
+    shoppingCartItems.length > -1
+      ? setShoppingCartItems([...shoppingCartItems, snkr])
+      : setShoppingCartItems([snkr]);
+    // shoppingCartItems === undefined
+    //   ? setShoppingCartItems(snkr)
+    //   : setShoppingCartItems(...shoppingCartItems, snkr);
+    //animation & visual of increase in total amount of items\
+
+    // console.log(shoppingCartItems);
+  };
+  // console.log(handleClick());
   const openModal = () => {
-    console.log(showShoppingCart);
     setShowShoppingCart((prev) => !prev);
   };
 
@@ -28,19 +43,18 @@ const App = () => {
         />
         <Nav openModal={openModal} />
         <Switch>
-          {/* <Route extact path="/" component={App} /> */}
           <Route exact path="/">
             <Home />
           </Route>
           <Route exact path="/catalogue">
-            <ProductsAll />
+            <ProductsAll handleClick={handleClick} />
           </Route>
           <Route exact path="/catalogue/:linkID">
-            <ProductSingle />
+            <ProductSingle handleClick={handleClick} />
           </Route>
         </Switch>
       </div>
-      <div>
+      <div className="text-xs">
         Icons made by{" "}
         <a href="https://www.freepik.com" title="Freepik">
           Freepik

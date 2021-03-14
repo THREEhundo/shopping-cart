@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "./useFetch";
 
@@ -7,6 +7,18 @@ const ProductSingle = (props) => {
   const { data, error, isPending } = useFetch(
     "https://api.thesneakerdatabase.com/v1/sneakers?limit=50&name=air%20jordan%201%20high&brand=jordan"
   );
+  const { handleClick } = props;
+
+  const addToCart = useCallback(
+    (e) => {
+      const { id } = e.target.parentNode;
+      const copy = data.map((x) => x);
+      const snkr = copy.find((x) => x.id === id);
+
+      handleClick(e, snkr);
+    },
+    [handleClick, data]
+  );
 
   const pickSnkr = () => {
     let mod;
@@ -14,7 +26,7 @@ const ProductSingle = (props) => {
       const copy = data.map((x) => x);
       const snkr = copy.find((x) => x.linkID === linkID);
       mod = (
-        <div className="h-screen p-5">
+        <div className="h-screen p-5" id={snkr.id}>
           <img
             className="rounded-t-xl"
             alt="snkrImg"
@@ -31,7 +43,10 @@ const ProductSingle = (props) => {
             Jordan I, simultaneously breaking league rules and his opponents'
             will while capturing the imagination of fans worldwide.
           </p>
-          <button className="bg-secondary text-primary rounded-lg ring-4 ring-white my-2 rounded-full py-1 px-2 hover:text-secondary hover:bg-primary hover:ring-white focus:outline-none focus:bg-primary focus:ring-white focus:text-secondary">
+          <button
+            className="bg-secondary text-primary rounded-lg ring-4 ring-white my-2 rounded-full py-1 px-2 hover:text-secondary hover:bg-primary hover:ring-white focus:outline-none focus:bg-primary focus:ring-white focus:text-secondary"
+            onClick={addToCart}
+          >
             Buy
           </button>
         </div>
@@ -40,7 +55,6 @@ const ProductSingle = (props) => {
     return mod;
   };
 
-  pickSnkr();
   const snkrView = pickSnkr();
 
   return (

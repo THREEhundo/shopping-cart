@@ -33,7 +33,6 @@ const App = () => {
       <div className="bg-primary text-secondary">
         <ShoppingCart
           showShoppingCart={showShoppingCart}
-          setShowShoppingCart={setShowShoppingCart}
           shoppingCartItems={shoppingCartItems}
           setShoppingCartItems={setShoppingCartItems}
         />

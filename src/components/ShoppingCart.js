@@ -30,8 +30,6 @@ const ShoppingCart = ({
         return item;
       }
     });
-
-    console.log(updatedList);
     setShoppingCartItems(updatedList);
   };
 

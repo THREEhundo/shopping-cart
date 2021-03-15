@@ -8,13 +8,9 @@ import ProductSingle from "./components/ProductSingle";
 import ShoppingCart from "./components/ShoppingCart";
 // import Search from "./components/Search";
 
-// Create cleanup for FETCH when clicking on different tab
-// Create useFetch hook
-
 const App = () => {
   const [showShoppingCart, setShowShoppingCart] = useState(false);
   const [shoppingCartItems, setShoppingCartItems] = useState([]);
-  const EMPTY_CART = { shoppingCartItems: [] };
   // Shopping cart items -> id of item & amount of each
 
   const openModal = () => {
@@ -25,7 +21,7 @@ const App = () => {
   const handleClick = (e, snkr) => {
     e.preventDefault();
     shoppingCartItems.length > -1
-      ? setShoppingCartItems([...shoppingCartItems, snkr])
+      ? setShoppingCartItems([...shoppingCartItems, { ...snkr, count: 1 }])
       : setShoppingCartItems([snkr]);
 
     openModal();
@@ -40,7 +36,6 @@ const App = () => {
           setShowShoppingCart={setShowShoppingCart}
           shoppingCartItems={shoppingCartItems}
           setShoppingCartItems={setShoppingCartItems}
-          EMPTY_CART={EMPTY_CART}
         />
         <Nav openModal={openModal} />
         <Switch>

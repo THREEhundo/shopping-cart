@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 /*
 Clicking Add to Cart button -> Open Shopping Cart Modal
@@ -14,45 +14,84 @@ Modal includes
 */
 const ShoppingCart = ({
   showShoppingCart,
-  setShoppingCart,
   shoppingCartItems = [],
   setShoppingCartItems,
 }) => {
+  const [value, setValue] = useState(1);
+  // Delete Item from bag when item count = 0
+  const handleClick = (e, i) => {
+    // const updatedList = shoppingCartItems.map((item, j) => {
+    //   if (j === i) {
+    //     if (e.target.id === "minus") {
+    //       return { ...item, count: item.count - 1 };
+    //     } else {
+    //       return { ...item, count: item.count + 1 };
+    //     }
+    //   } else {
+    //     return item;
+    //   }
+    // });
+    // setShoppingCartItems(updatedList);
+    const itemTotal = document.querySelector("#itemTotal").value;
+    console.log(itemTotal);
+    let { id } = e.target;
+    if (id === "minus") {
+      // if (itemTotal === 0) {
+      //   const updatedCart = shoppingCartItems.splice(i, 1);
+      //   setShoppingCartItems(updatedCart);
+      // }
+      setValue(value - 1);
+    } else {
+      setValue(value + 1);
+    }
+  };
+
   const handleChange = (e, i) => {
-    const updatedList = shoppingCartItems.map((item, j) => {
-      if (j === i) {
-        if (e.target.id === "minus") {
-          return { ...item, count: item.count - 1 };
-        } else {
-          return { ...item, count: item.count + 1 };
-        }
-      } else {
-        return item;
-      }
-    });
-    setShoppingCartItems(updatedList);
+    let { value, min, max } = e.target;
+    value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+    if (value === 0) {
+      console.log(value);
+      const updatedCart = shoppingCartItems.map((x) => x);
+      updatedCart.splice(i, 1);
+      console.log(updatedCart);
+      setShoppingCartItems(updatedCart);
+      setValue(1);
+    }
+    // else if (value === "") {
+    // }
+    // else {
+    setValue(value);
+    // }
   };
 
   const itemsInCart = () => {
     return shoppingCartItems.map((item, index) => {
-      console.log(index);
       return (
         <div key={item.id} id="cartItem" className="text-primary">
           <img alt="cartItem" src={item.img.smallImg}></img>
           <p>{item.name}</p>
           <p>${item.retailPrice}</p>
           <div>
-            <button id="minus" onClick={(e) => handleChange(e, index)}>
+            <button
+              id="minus"
+              // value={value}
+              // onClick={(e) => handleClick(e, index)}
+            >
               -
             </button>
             <input
               id="itemTotal"
-              placeholder={item.count}
-              type="number"
+              value={value}
               min="0"
-              max="100"
+              max="20"
+              type="number"
+              onChange={(e) => handleChange(e, index)}
             ></input>
-            <button id="plus" onClick={(e) => handleChange(e, index)}>
+            <button
+              id="plus"
+              // value={value}
+              // onClick={(e) => handleClick(e, index)}
+            >
               +
             </button>
           </div>

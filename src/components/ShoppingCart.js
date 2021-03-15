@@ -18,11 +18,14 @@ const ShoppingCart = ({
   shoppingCartItems = [],
   setShoppingCartItems,
 }) => {
-  const handleDecrement = (i) => {
+  const handleChange = (e, i) => {
     const updatedList = shoppingCartItems.map((item, j) => {
       if (j === i) {
-        console.log(item.count - 1);
-        return { ...item, count: item.count - 1 };
+        if (e.target.id === "minus") {
+          return { ...item, count: item.count - 1 };
+        } else {
+          return { ...item, count: item.count + 1 };
+        }
       } else {
         return item;
       }
@@ -32,7 +35,7 @@ const ShoppingCart = ({
     setShoppingCartItems(updatedList);
   };
 
-  const itemsInCart = (event) => {
+  const itemsInCart = () => {
     return shoppingCartItems.map((item, index) => {
       console.log(index);
       return (
@@ -41,7 +44,9 @@ const ShoppingCart = ({
           <p>{item.name}</p>
           <p>${item.retailPrice}</p>
           <div>
-            <button onClick={() => handleDecrement(index)}>-</button>
+            <button id="minus" onClick={(e) => handleChange(e, index)}>
+              -
+            </button>
             <input
               id="itemTotal"
               placeholder={item.count}
@@ -49,11 +54,7 @@ const ShoppingCart = ({
               min="0"
               max="100"
             ></input>
-            <button
-            // onClick={
-            //   () => console.log(shoppingCartItems[0])
-            // }
-            >
+            <button id="plus" onClick={(e) => handleChange(e, index)}>
               +
             </button>
           </div>

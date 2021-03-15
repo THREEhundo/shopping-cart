@@ -17,7 +17,6 @@ const ShoppingCart = ({
   shoppingCartItems = [],
   setShoppingCartItems,
 }) => {
-  const [value, setValue] = useState(1);
   // Delete Item from bag when item count = 0
   const handleClick = (e, i) => {
     // const updatedList = shoppingCartItems.map((item, j) => {
@@ -32,36 +31,35 @@ const ShoppingCart = ({
     //   }
     // });
     // setShoppingCartItems(updatedList);
-    const itemTotal = document.querySelector("#itemTotal").value;
-    console.log(itemTotal);
-    let { id } = e.target;
-    if (id === "minus") {
-      // if (itemTotal === 0) {
-      //   const updatedCart = shoppingCartItems.splice(i, 1);
-      //   setShoppingCartItems(updatedCart);
-      // }
-      setValue(value - 1);
-    } else {
-      setValue(value + 1);
-    }
+    //
+    // let { id } = e.target;
+    // if (id === "minus") {
+    //   // if (itemTotal === 0) {
+    //   //   const updatedCart = shoppingCartItems.splice(i, 1);
+    //   //   setShoppingCartItems(updatedCart);
+    //   // }
+    //   setValue(value - 1);
+    // } else {
+    //   setValue(value + 1);
+    // }
   };
 
   const handleChange = (e, i) => {
     let { value, min, max } = e.target;
     value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+
+    const updatedCart = shoppingCartItems.map((item, j) => {
+      if (j === i) {
+        return { ...item, count: value };
+      } else {
+        return item;
+      }
+    });
     if (value === 0) {
-      console.log(value);
-      const updatedCart = shoppingCartItems.map((x) => x);
       updatedCart.splice(i, 1);
-      console.log(updatedCart);
-      setShoppingCartItems(updatedCart);
-      setValue(1);
+      return setShoppingCartItems(updatedCart);
     }
-    // else if (value === "") {
-    // }
-    // else {
-    setValue(value);
-    // }
+    setShoppingCartItems(updatedCart);
   };
 
   const itemsInCart = () => {
@@ -74,14 +72,15 @@ const ShoppingCart = ({
           <div>
             <button
               id="minus"
-              // value={value}
+              // shoppingCartItems={shoppingCartItems}
               // onClick={(e) => handleClick(e, index)}
             >
               -
             </button>
             <input
               id="itemTotal"
-              value={value}
+              value={item.count}
+              // shoppingCartItems={shoppingCartItems}
               min="0"
               max="20"
               type="number"
@@ -89,7 +88,7 @@ const ShoppingCart = ({
             ></input>
             <button
               id="plus"
-              // value={value}
+              // shoppingCartItems={shoppingCartItems}
               // onClick={(e) => handleClick(e, index)}
             >
               +

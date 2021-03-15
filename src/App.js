@@ -20,9 +20,19 @@ const App = () => {
   // Click handler for all buy buttons
   const handleClick = (e, snkr) => {
     e.preventDefault();
-    shoppingCartItems.length > -1
-      ? setShoppingCartItems([...shoppingCartItems, { ...snkr, count: 1 }])
-      : setShoppingCartItems([snkr]);
+
+    if (shoppingCartItems.some((x) => x.name === snkr.name)) {
+      const add = shoppingCartItems.map((item) => {
+        if (item.name === snkr.name) {
+          return { ...item, count: item.count + 1 };
+        } else {
+          return item;
+        }
+      });
+      setShoppingCartItems(add);
+    } else {
+      setShoppingCartItems([...shoppingCartItems, { ...snkr, count: 1 }]);
+    }
 
     openModal();
     //animation & visual of increase in total amount of items\

@@ -99,8 +99,8 @@ const ShoppingCart = ({
                 src={trashIcon}
               ></img>
             </button>
+            ${item.total}
           </div>
-          {/* <TotalAmt key="total" total={total} /> */}
         </div>
       );
     });

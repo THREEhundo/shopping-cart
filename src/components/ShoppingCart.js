@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 /*
 Clicking Add to Cart button -> Open Shopping Cart Modal
@@ -17,31 +17,20 @@ const ShoppingCart = ({
   shoppingCartItems = [],
   setShoppingCartItems,
 }) => {
-  // Delete Item from bag when item count = 0
   const handleClick = (e, i) => {
-    // const updatedList = shoppingCartItems.map((item, j) => {
-    //   if (j === i) {
-    //     if (e.target.id === "minus") {
-    //       return { ...item, count: item.count - 1 };
-    //     } else {
-    //       return { ...item, count: item.count + 1 };
-    //     }
-    //   } else {
-    //     return item;
-    //   }
-    // });
-    // setShoppingCartItems(updatedList);
-    //
-    // let { id } = e.target;
-    // if (id === "minus") {
-    //   // if (itemTotal === 0) {
-    //   //   const updatedCart = shoppingCartItems.splice(i, 1);
-    //   //   setShoppingCartItems(updatedCart);
-    //   // }
-    //   setValue(value - 1);
-    // } else {
-    //   setValue(value + 1);
-    // }
+    const { id } = e.target;
+
+    const updatedCart = shoppingCartItems.map((item, j) => {
+      return j === i
+        ? id === "minus"
+          ? { ...item, count: item.count - 1 }
+          : { ...item, count: item.count + 1 }
+        : item;
+    });
+
+    const nonZero = updatedCart.filter((item) => item.count !== 0);
+
+    setShoppingCartItems(nonZero);
   };
 
   const handleChange = (e, i) => {
@@ -55,6 +44,7 @@ const ShoppingCart = ({
         return item;
       }
     });
+
     if (value === 0) {
       updatedCart.splice(i, 1);
       return setShoppingCartItems(updatedCart);
@@ -72,25 +62,20 @@ const ShoppingCart = ({
           <div>
             <button
               id="minus"
-              // shoppingCartItems={shoppingCartItems}
-              // onClick={(e) => handleClick(e, index)}
+              value={item.count}
+              onClick={(e) => handleClick(e, index)}
             >
               -
             </button>
             <input
               id="itemTotal"
               value={item.count}
-              // shoppingCartItems={shoppingCartItems}
               min="0"
               max="20"
               type="number"
               onChange={(e) => handleChange(e, index)}
             ></input>
-            <button
-              id="plus"
-              // shoppingCartItems={shoppingCartItems}
-              // onClick={(e) => handleClick(e, index)}
-            >
+            <button id="plus" onClick={(e) => handleClick(e, index)}>
               +
             </button>
           </div>

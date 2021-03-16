@@ -47,7 +47,7 @@ const ShoppingCart = ({
 
     const updatedCart = shoppingCartItems.map((item, j) => {
       if (j === i) {
-        return { ...item, count: value };
+        return { ...item, count: value, total: value * item.retailPrice };
       } else {
         return item;
       }
@@ -64,6 +64,12 @@ const ShoppingCart = ({
     const delItem = shoppingCartItems.map((x) => x);
     delItem.splice(i, 1);
     return setShoppingCartItems(delItem);
+  };
+
+  const Total = () => {
+    const due = shoppingCartItems.map((x) => x.total).reduce((x, y) => x + y);
+    console.log(due);
+    return <div id="total">Total: ${due}</div>;
   };
 
   const ItemsInCart = () => {
@@ -130,7 +136,7 @@ const ShoppingCart = ({
           >
             Shopping Cart
           </h1>
-          <div id="itemContainer" key="itemContainer" className="w-full h-4/5">
+          <div id="itemContainer" key="itemContainer" className="w-full h-3/5">
             {shoppingCartItems.length > 0 ? (
               [<ItemsInCart />]
             ) : (
@@ -139,6 +145,7 @@ const ShoppingCart = ({
               </div>
             )}
           </div>
+          <Total />
         </div>
       </div>
     );

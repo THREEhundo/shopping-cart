@@ -19,7 +19,7 @@ const ProductSingle = ({ handleClick, shoppingCartItems }) => {
     [handleClick, data]
   );
 
-  const pickSnkr = () => {
+  const PickSnkr = () => {
     let mod;
     if (data) {
       const copy = data.map((x) => x);
@@ -54,13 +54,11 @@ const ProductSingle = ({ handleClick, shoppingCartItems }) => {
     return mod;
   };
 
-  const snkrView = pickSnkr();
-
   return (
     <div className="h-screen">
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
-      {data && snkrView}
+      {data && <PickSnkr />}
     </div>
   );
 };

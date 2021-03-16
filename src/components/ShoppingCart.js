@@ -58,10 +58,12 @@ const ShoppingCart = ({
     return setShoppingCartItems(delItem);
   };
 
-  const itemsInCart = () => {
+  const subTotal = () => {};
+
+  const ItemsInCart = () => {
     return shoppingCartItems.map((item, index) => {
       return (
-        <div key={item.id} id="cartItem" className="text-primary">
+        <div key={item.id} id={item.id} className="text-primary">
           <img alt="cartItem" src={item.img.smallImg}></img>
           <p>{item.name}</p>
           <p>${item.retailPrice}</p>
@@ -97,8 +99,6 @@ const ShoppingCart = ({
     });
   };
 
-  const scanItems = itemsInCart();
-
   const Modal = () => {
     return (
       <div
@@ -106,13 +106,16 @@ const ShoppingCart = ({
         className="container h-full bg-opblack bg-black flex flex-col fixed"
       >
         SHOPPING MODAL
-        <div className="w-5/12 h-full bg-secondary self-end flex flex-wrap shadow-inner z-10 text-primary">
+        <div
+          id="cartDrawer"
+          className="w-5/12 h-full bg-secondary self-end flex flex-wrap shadow-inner z-10 text-primary"
+        >
           <h1 className="h-1/5 viewFont text-center flex-shrink">
             Shopping Cart
           </h1>
           <div className="w-full h-4/5">
             {shoppingCartItems.length > 0 ? (
-              [scanItems]
+              [<ItemsInCart />]
             ) : (
               <div>Nothing in Cart</div>
             )}
@@ -122,9 +125,9 @@ const ShoppingCart = ({
     );
   };
 
-  const showModal = Modal();
+  // const showModal = Modal();
 
-  return <div>{showShoppingCart ? showModal : null}</div>;
+  return showShoppingCart ? <Modal /> : null;
 };
 
 export default ShoppingCart;

@@ -66,10 +66,20 @@ const ShoppingCart = ({
     return setShoppingCartItems(delItem);
   };
 
+  const comma = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
   const Total = () => {
-    const due = shoppingCartItems.map((x) => x.total).reduce((x, y) => x + y);
-    console.log(due);
-    return <div id="total">Total: ${due}</div>;
+    let due;
+    shoppingCartItems.length > 0
+      ? (due = comma(
+          shoppingCartItems.map((x) => x.total).reduce((x, y) => x + y)
+        ))
+      : (due = 0);
+    return (
+      <div id="total" className="text-3xl">
+        Total: ${due}
+      </div>
+    );
   };
 
   const ItemsInCart = () => {
@@ -98,7 +108,7 @@ const ShoppingCart = ({
             <button id="plus" onClick={(e) => handleClick(e, index)}>
               +
             </button>
-            ${item.total}
+            ${comma(item.total)}
             <button
               className="float-right"
               onClick={() => handleDelete(index)}
@@ -141,11 +151,11 @@ const ShoppingCart = ({
               [<ItemsInCart />]
             ) : (
               <div key="empty" id="empty">
-                Nothing in Cart
+                Your Cart is Empty, Get Shopping!
               </div>
             )}
           </div>
-          <Total />
+          <Total key="total" />
         </div>
       </div>
     );

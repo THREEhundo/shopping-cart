@@ -23,8 +23,16 @@ const ShoppingCart = ({
     const updatedCart = shoppingCartItems.map((item, j) => {
       return j === i
         ? id === "minus"
-          ? { ...item, count: item.count - 1 }
-          : { ...item, count: item.count + 1 }
+          ? {
+              ...item,
+              count: item.count - 1,
+              total: (item.count - 1) * item.retailPrice,
+            }
+          : {
+              ...item,
+              count: item.count + 1,
+              total: (item.count + 1) * item.retailPrice,
+            }
         : item;
     });
 
@@ -57,8 +65,6 @@ const ShoppingCart = ({
     delItem.splice(i, 1);
     return setShoppingCartItems(delItem);
   };
-
-  const subTotal = () => {};
 
   const ItemsInCart = () => {
     return shoppingCartItems.map((item, index) => {
@@ -94,6 +100,7 @@ const ShoppingCart = ({
               ></img>
             </button>
           </div>
+          {/* <TotalAmt key="total" total={total} /> */}
         </div>
       );
     });
@@ -102,30 +109,36 @@ const ShoppingCart = ({
   const Modal = () => {
     return (
       <div
-        id="shoppingCart"
+        key="shoppingModal"
+        id="shoppingModal"
         className="container h-full bg-opblack bg-black flex flex-col fixed"
       >
         SHOPPING MODAL
         <div
+          key="cartDrawer"
           id="cartDrawer"
           className="w-5/12 h-full bg-secondary self-end flex flex-wrap shadow-inner z-10 text-primary"
         >
-          <h1 className="h-1/5 viewFont text-center flex-shrink">
+          <h1
+            id="header"
+            key="header"
+            className="h-1/5 viewFont text-center flex-shrink"
+          >
             Shopping Cart
           </h1>
-          <div className="w-full h-4/5">
+          <div id="itemContainer" key="itemContainer" className="w-full h-4/5">
             {shoppingCartItems.length > 0 ? (
               [<ItemsInCart />]
             ) : (
-              <div>Nothing in Cart</div>
+              <div key="empty" id="empty">
+                Nothing in Cart
+              </div>
             )}
           </div>
         </div>
       </div>
     );
   };
-
-  // const showModal = Modal();
 
   return showShoppingCart ? <Modal /> : null;
 };

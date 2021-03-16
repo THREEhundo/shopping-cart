@@ -24,14 +24,21 @@ const App = () => {
     if (shoppingCartItems.some((x) => x.name === snkr.name)) {
       const add = shoppingCartItems.map((item) => {
         if (item.name === snkr.name) {
-          return { ...item, count: item.count + 1 };
+          return {
+            ...item,
+            count: item.count + 1,
+            total: (item.count + 1) * item.retailPrice,
+          };
         } else {
           return item;
         }
       });
       setShoppingCartItems(add);
     } else {
-      setShoppingCartItems([...shoppingCartItems, { ...snkr, count: 1 }]);
+      setShoppingCartItems([
+        ...shoppingCartItems,
+        { ...snkr, count: 1, total: snkr.retailPrice },
+      ]);
     }
 
     openModal();

@@ -78,10 +78,10 @@ const ShoppingCart = ({
             <button id="plus" onClick={(e) => handleClick(e, index)}>
               +
             </button>
-            <button className="w-30 h-30" id="delete">
+            <button className="" id="delete">
               <img
                 alt="delete"
-                className="w-10 self-auto h-10 filter-pink"
+                className="w-8 h-6 filter-pink"
                 src={trashIcon}
               ></img>
             </button>

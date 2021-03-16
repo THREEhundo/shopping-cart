@@ -1,19 +1,32 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
 import useFetch from "./useFetch";
 
-const ProductsAll = (props) => {
+const ProductsAll = ({ handleClick }) => {
   const { data, error, isPending } = useFetch(
     "https://api.thesneakerdatabase.com/v1/sneakers?limit=50&name=air%20jordan%201%20high&brand=jordan"
   );
-  const { handleClick } = props;
+
+  const addToCart = useCallback(
+    (e) => {
+      const { id } = e.target.parentNode;
+      const copy = data.map((x) => x);
+      const snkr = copy.find((x) => x.id === id);
+      console.log(copy);
+
+      handleClick(e, snkr);
+    },
+    [handleClick, data]
+  );
 
   function cardStructure(props) {
     if (data) {
-      return data.map((snkr) => {
+      const copy = data.map((x) => x);
+      return copy.map((snkr) => {
         return (
           <div
             key={snkr.id}
+            id={snkr.id}
             className="flex flex-col self-center justify-evenly rounded-lg border-2 border-white w-11/12 h-auto py-2 px-2 my-2 mx-auto"
           >
             <Link to={`/catalogue/${snkr.linkID}`}>
@@ -36,7 +49,7 @@ const ProductsAll = (props) => {
             </p>
             <button
               className="bg-secondary text-primary rounded-lg ring-4 ring-primary my-2 rounded-full py-1 px-2 hover:text-secondary hover:bg-primary hover:ring-secondary focus:outline-none focus:bg-primary focus:ring-secondary focus:text-secondary"
-              onClick={handleClick}
+              onClick={addToCart}
             >
               Buy
             </button>

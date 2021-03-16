@@ -25,7 +25,7 @@ const ProductSingle = ({ handleClick, shoppingCartItems }) => {
       const copy = data.map((x) => x);
       const snkr = copy.find((x) => x.linkID === linkID);
       mod = (
-        <div className="h-screen p-5" id={snkr.id}>
+        <div className="h-screen p-5" key={snkr.id} id={snkr.id}>
           <img
             className="rounded-t-xl"
             alt="snkrImg"

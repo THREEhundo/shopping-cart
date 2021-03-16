@@ -7,7 +7,6 @@ const ProductSingle = ({ handleClick, shoppingCartItems }) => {
   const { data, error, isPending } = useFetch(
     "https://api.thesneakerdatabase.com/v1/sneakers?limit=50&name=air%20jordan%201%20high&brand=jordan"
   );
-  // const { handleClick } = props;
 
   const addToCart = useCallback(
     (e) => {

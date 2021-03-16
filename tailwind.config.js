@@ -2,6 +2,11 @@ module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    colors: {
+      primary: "#ffc6c5",
+      secondary: "#ffffff",
+      opblack: "rgba(0, 0, 0, 0.8)",
+    },
     borderRadius: {
       none: "0",
       sm: "0.125rem",
@@ -14,9 +19,13 @@ module.exports = {
       secondary: "#ffffff",
       opblack: "rgba(0, 0, 0, 0.8)",
     }),
+    backgroundImage: (theme) => ({
+      trash: "url('./imgs/trash.svg')",
+    }),
     textColor: {
       primary: "#ffc6c5",
       secondary: "#ffffff",
+      danger: "#e3342f",
     },
     container: {
       center: true,

@@ -17,4 +17,8 @@
   .viewFont {
     font-size: 9vw;
   }
+  .filter-pink {
+    filter: invert(80%) sepia(9%) saturate(6056%) hue-rotate(303deg)
+      brightness(126%) contrast(146%);
+  }
 }

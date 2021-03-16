@@ -1,5 +1,5 @@
 import React from "react";
-
+import trashIcon from "../imgs/trash.svg";
 /*
 Clicking Add to Cart button -> Open Shopping Cart Modal
 Modal includes
@@ -77,6 +77,13 @@ const ShoppingCart = ({
             ></input>
             <button id="plus" onClick={(e) => handleClick(e, index)}>
               +
+            </button>
+            <button className="w-30 h-30" id="delete">
+              <img
+                alt="delete"
+                className="w-10 self-auto h-10 filter-pink"
+                src={trashIcon}
+              ></img>
             </button>
           </div>
         </div>

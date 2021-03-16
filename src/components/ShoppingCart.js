@@ -92,14 +92,18 @@ const ShoppingCart = ({
             <button id="plus" onClick={(e) => handleClick(e, index)}>
               +
             </button>
-            <button onClick={() => handleDelete(index)} id="delete">
+            ${item.total}
+            <button
+              className="float-right"
+              onClick={() => handleDelete(index)}
+              id="delete"
+            >
               <img
                 alt="delete"
                 className="w-8 h-6 filter-pink"
                 src={trashIcon}
               ></img>
             </button>
-            ${item.total}
           </div>
         </div>
       );

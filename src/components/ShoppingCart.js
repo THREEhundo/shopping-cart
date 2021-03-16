@@ -52,6 +52,12 @@ const ShoppingCart = ({
     setShoppingCartItems(updatedCart);
   };
 
+  const handleDelete = (i) => {
+    const delItem = shoppingCartItems.map((x) => x);
+    delItem.splice(i, 1);
+    return setShoppingCartItems(delItem);
+  };
+
   const itemsInCart = () => {
     return shoppingCartItems.map((item, index) => {
       return (
@@ -78,7 +84,7 @@ const ShoppingCart = ({
             <button id="plus" onClick={(e) => handleClick(e, index)}>
               +
             </button>
-            <button className="" id="delete">
+            <button onClick={() => handleDelete(index)} id="delete">
               <img
                 alt="delete"
                 className="w-8 h-6 filter-pink"

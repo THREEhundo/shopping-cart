@@ -15,7 +15,6 @@ const Nav = ({ openModal, shoppingCartItems = [] }) => {
           .reduce((x, y) => x + y))
       : (currentTotal = "");
 
-    console.log(currentTotal);
     return <span>{currentTotal}</span>;
   };
 

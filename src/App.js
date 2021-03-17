@@ -1,6 +1,5 @@
 import "./App.css";
-import React, { useState, useRef, useEffect, useCallback } from "react";
-import { useSpring, animated } from "react-spring";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from "./components/Nav";
 import Home from "./components/Home";
@@ -50,6 +49,7 @@ const App = () => {
       <div className="bg-primary text-secondary">
         <ShoppingCart
           showShoppingCart={showShoppingCart}
+          setShowShoppingCart={setShowShoppingCart}
           shoppingCartItems={shoppingCartItems}
           setShoppingCartItems={setShoppingCartItems}
         />

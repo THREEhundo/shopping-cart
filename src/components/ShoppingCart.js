@@ -1,11 +1,43 @@
-import React from "react";
+import React, { useRef, useEffect, useCallback } from "react";
+import { useSpring, animated } from "react-spring";
 import trashIcon from "../imgs/trash.svg";
 
 const ShoppingCart = ({
   showShoppingCart,
+  setShowShoppingCart,
   shoppingCartItems = [],
   setShoppingCartItems,
 }) => {
+  const modalRef = useRef();
+
+  const animation = useSpring({
+    config: {
+      duration: 250,
+    },
+    opactiy: showShoppingCart ? 1 : 0,
+    transform: showShoppingCart ? "translateX(58.4%)" : "translateX(100%)",
+  });
+
+  const closeCart = (e) => {
+    if (modalRef.current === e.target) {
+      setShowShoppingCart(false);
+    }
+  };
+
+  const keyPress = useCallback(
+    (e) => {
+      if (e.key === "Escape" && showShoppingCart) {
+        setShowShoppingCart(false);
+      }
+    },
+    [showShoppingCart, setShowShoppingCart]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", keyPress);
+    return () => document.removeEventListener("keydown", keyPress);
+  });
+
   const handleClick = (e, i) => {
     const { id } = e.target;
 
@@ -126,34 +158,42 @@ const ShoppingCart = ({
   const Modal = () => {
     return (
       <div
+        ref={modalRef}
         key="shoppingModal"
         id="shoppingModal"
         className="container h-full bg-opblack bg-black flex flex-col fixed"
+        onClick={closeCart}
       >
         SHOPPING MODAL
-        <div
-          key="cartDrawer"
-          id="cartDrawer"
-          className="w-5/12 h-full bg-secondary self-end flex flex-wrap shadow-inner z-10 text-primary"
-        >
-          <h1
-            id="header"
-            key="header"
-            className="h-1/5 viewFont text-center flex-shrink"
+        <animated.div style={animation}>
+          <div
+            key="cartDrawer"
+            id="cartDrawer"
+            className="w-5/12 h-full bg-secondary self-end flex flex-wrap shadow-inner z-10 text-primary"
           >
-            Shopping Cart
-          </h1>
-          <div id="itemContainer" key="itemContainer" className="w-full h-3/5">
-            {shoppingCartItems.length > 0 ? (
-              [<ItemsInCart />]
-            ) : (
-              <div key="empty" id="empty">
-                Your Cart is Empty, Get Shopping!
-              </div>
-            )}
+            <h1
+              id="header"
+              key="header"
+              className="h-1/5 viewFont text-center flex-shrink"
+            >
+              Shopping Cart
+            </h1>
+            <div
+              id="itemContainer"
+              key="itemContainer"
+              className="w-full h-3/5"
+            >
+              {shoppingCartItems.length > 0 ? (
+                [<ItemsInCart />]
+              ) : (
+                <div key="empty" id="empty">
+                  Your Cart is Empty, Get Shopping!
+                </div>
+              )}
+            </div>
+            <Total key="total" />
           </div>
-          <Total key="total" />
-        </div>
+        </animated.div>
       </div>
     );
   };

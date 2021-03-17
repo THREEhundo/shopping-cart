@@ -110,7 +110,7 @@ const ShoppingCart = ({
   const ItemsInCart = () => {
     const list = shoppingCartItems.map((item, index) => {
       return (
-        <div key={item.id} id={item.id} className="text-primary">
+        <li key={item.id} id={item.id} className="text-primary">
           <img alt="cartItem" src={item.img.smallImg}></img>
           <p>{item.name}</p>
           <p>${item.retailPrice}</p>
@@ -146,10 +146,10 @@ const ShoppingCart = ({
               ></img>
             </button>
           </div>
-        </div>
+        </li>
       );
     });
-    return <div>{list}</div>;
+    return <ul>{list}</ul>;
   };
 
   const Modal = () => {
@@ -171,7 +171,7 @@ const ShoppingCart = ({
             </h1>
             <div id="itemContainer" className="w-full h-3/5">
               {shoppingCartItems.length > 0 ? (
-                [<ItemsInCart />]
+                [<ItemsInCart key="full" />]
               ) : (
                 <div id="empty">Your Cart is Empty, Get Shopping!</div>
               )}

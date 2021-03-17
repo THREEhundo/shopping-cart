@@ -36,7 +36,7 @@ const ShoppingCart = ({
   useEffect(() => {
     document.addEventListener("keydown", keyPress);
     return () => document.removeEventListener("keydown", keyPress);
-  });
+  }, [keyPress]);
 
   const handleClick = (e, i) => {
     const { id } = e.target;

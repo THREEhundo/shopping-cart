@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import logo from "../imgs/logo.png";
 import cartLogo from "../imgs/shopping-bag.png";
 
-// NavLink prevents default call to the server, react-router-dom to render correct data.
-// Also allows you to style active links
 const Nav = ({ openModal, shoppingCartItems = [] }) => {
   const TotalInCart = () => {
     let currentTotal;

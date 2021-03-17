@@ -34,8 +34,12 @@ const ShoppingCart = ({
   );
 
   useEffect(() => {
-    document.addEventListener("keydown", keyPress);
-    return () => document.removeEventListener("keydown", keyPress);
+    let isMounted = true;
+    if (isMounted) document.addEventListener("keydown", keyPress);
+    return () => {
+      isMounted = false;
+      return document.removeEventListener("keydown", keyPress);
+    };
   }, [keyPress]);
 
   const handleClick = (e, i) => {
@@ -104,19 +108,14 @@ const ShoppingCart = ({
   };
 
   const ItemsInCart = () => {
-    return shoppingCartItems.map((item, index) => {
+    const list = shoppingCartItems.map((item, index) => {
       return (
         <div key={item.id} id={item.id} className="text-primary">
-          <img
-            key={item.img.smallImg}
-            alt="cartItem"
-            src={item.img.smallImg}
-          ></img>
-          <p key={item.name}>{item.name}</p>
-          <p key={item.retailPrice}>${item.retailPrice}</p>
-          <div key="count">
+          <img alt="cartItem" src={item.img.smallImg}></img>
+          <p>{item.name}</p>
+          <p>${item.retailPrice}</p>
+          <div>
             <button
-              key="minus"
               id="minus"
               value={item.count}
               onClick={(e) => handleClick(e, index)}
@@ -124,7 +123,6 @@ const ShoppingCart = ({
               -
             </button>
             <input
-              key="itemTotal"
               id="itemTotal"
               value={item.count}
               min="0"
@@ -132,18 +130,16 @@ const ShoppingCart = ({
               type="number"
               onChange={(e) => handleChange(e, index)}
             ></input>
-            <button key="plus" id="plus" onClick={(e) => handleClick(e, index)}>
+            <button id="plus" onClick={(e) => handleClick(e, index)}>
               +
             </button>
             ${comma(item.total)}
             <button
-              key="delete"
               className="float-right"
               onClick={() => handleDelete(index)}
               id="delete"
             >
               <img
-                key="trashCan"
                 alt="delete"
                 className="w-8 h-6 filter-pink"
                 src={trashIcon}
@@ -153,13 +149,13 @@ const ShoppingCart = ({
         </div>
       );
     });
+    return <div>{list}</div>;
   };
 
   const Modal = () => {
     return (
       <div
         ref={modalRef}
-        key="shoppingModal"
         id="shoppingModal"
         className="container h-full bg-opblack bg-black flex flex-col fixed"
         onClick={closeCart}
@@ -167,31 +163,20 @@ const ShoppingCart = ({
         SHOPPING MODAL
         <animated.div style={animation} className="h-full" id="animated">
           <div
-            key="cartDrawer"
             id="cartDrawer"
             className="w-5/12 h-full bg-secondary self-end flex flex-wrap shadow-inner z-10 text-primary"
           >
-            <h1
-              id="header"
-              key="header"
-              className="h-1/5 viewFont text-center flex-shrink"
-            >
+            <h1 id="header" className="h-1/5 viewFont text-center flex-shrink">
               Shopping Cart
             </h1>
-            <div
-              id="itemContainer"
-              key="itemContainer"
-              className="w-full h-3/5"
-            >
+            <div id="itemContainer" className="w-full h-3/5">
               {shoppingCartItems.length > 0 ? (
                 [<ItemsInCart />]
               ) : (
-                <div key="empty" id="empty">
-                  Your Cart is Empty, Get Shopping!
-                </div>
+                <div id="empty">Your Cart is Empty, Get Shopping!</div>
               )}
             </div>
-            <Total key="total" />
+            <Total />
           </div>
         </animated.div>
       </div>

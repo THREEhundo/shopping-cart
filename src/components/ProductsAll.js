@@ -19,7 +19,7 @@ const ProductsAll = ({ handleClick }) => {
     [handleClick, data]
   );
 
-  function CardStructure(props) {
+  const CardStructure = () => {
     if (data) {
       const copy = data.map((x) => x);
       return copy.map((snkr) => {
@@ -57,15 +57,19 @@ const ProductsAll = ({ handleClick }) => {
         );
       });
     }
-  }
+  };
+
+  const Container = () => (
+    <div className="container mx-auto h-full mt-10 pb-1">
+      {isPending && <div>Loading...</div>}
+      {error && <div>{error}</div>}
+      {data && <CardStructure />}
+    </div>
+  );
 
   return (
-    <div className="h-full mt-10">
-      <div id="cards" className="pb-2">
-        {isPending && <div>Loading...</div>}
-        {error && <div>{error}</div>}
-        {data && <CardStructure />}
-      </div>
+    <div>
+      <Container />
     </div>
   );
 };

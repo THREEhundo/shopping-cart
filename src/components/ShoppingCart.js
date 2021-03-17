@@ -1,17 +1,6 @@
 import React from "react";
 import trashIcon from "../imgs/trash.svg";
-/*
-Clicking Add to Cart button -> Open Shopping Cart Modal
-Modal includes
-1. Individual Divs of items selected
-  i. name
-  ii. total price of selected item(s)
-  iii. +/- incrementors
-  iv. text input for item count
-  v. delete button
-2. Subtotal
-3. Checkout button
-*/
+
 const ShoppingCart = ({
   showShoppingCart,
   shoppingCartItems = [],
@@ -86,11 +75,16 @@ const ShoppingCart = ({
     return shoppingCartItems.map((item, index) => {
       return (
         <div key={item.id} id={item.id} className="text-primary">
-          <img alt="cartItem" src={item.img.smallImg}></img>
-          <p>{item.name}</p>
-          <p>${item.retailPrice}</p>
-          <div>
+          <img
+            key={item.img.smallImg}
+            alt="cartItem"
+            src={item.img.smallImg}
+          ></img>
+          <p key={item.name}>{item.name}</p>
+          <p key={item.retailPrice}>${item.retailPrice}</p>
+          <div key="count">
             <button
+              key="minus"
               id="minus"
               value={item.count}
               onClick={(e) => handleClick(e, index)}
@@ -98,6 +92,7 @@ const ShoppingCart = ({
               -
             </button>
             <input
+              key="itemTotal"
               id="itemTotal"
               value={item.count}
               min="0"
@@ -105,16 +100,18 @@ const ShoppingCart = ({
               type="number"
               onChange={(e) => handleChange(e, index)}
             ></input>
-            <button id="plus" onClick={(e) => handleClick(e, index)}>
+            <button key="plus" id="plus" onClick={(e) => handleClick(e, index)}>
               +
             </button>
             ${comma(item.total)}
             <button
+              key="delete"
               className="float-right"
               onClick={() => handleDelete(index)}
               id="delete"
             >
               <img
+                key="trashCan"
                 alt="delete"
                 className="w-8 h-6 filter-pink"
                 src={trashIcon}

@@ -53,7 +53,7 @@ const App = () => {
           shoppingCartItems={shoppingCartItems}
           setShoppingCartItems={setShoppingCartItems}
         />
-        <Nav openModal={openModal} />
+        <Nav openModal={openModal} shoppingCartItems={shoppingCartItems} />
         <Switch>
           <Route exact path="/">
             <Home />
@@ -65,16 +65,6 @@ const App = () => {
             <ProductSingle handleClick={handleClick} />
           </Route>
         </Switch>
-      </div>
-      <div className="text-xs">
-        Icons made by{" "}
-        <a href="https://www.freepik.com" title="Freepik">
-          Freepik
-        </a>{" "}
-        from{" "}
-        <a href="https://www.flaticon.com/" title="Flaticon">
-          www.flaticon.com
-        </a>
       </div>
     </Router>
   );

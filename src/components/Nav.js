@@ -5,18 +5,24 @@ import cartLogo from "../imgs/shopping-bag.png";
 
 // NavLink prevents default call to the server, react-router-dom to render correct data.
 // Also allows you to style active links
-const Nav = ({ openModal }) => {
-  // const [showShoppingCart, setShowShoppingCart] = useState(false);
-  //
-  // const openModal = () => {
-  //   console.log(showShoppingCart);
-  //   setShowShoppingCart((prev) => !prev);
-  // };
-  //
+const Nav = ({ openModal, shoppingCartItems = [] }) => {
+  const TotalInCart = () => {
+    let currentTotal;
+
+    shoppingCartItems instanceof Array && shoppingCartItems.length > 0
+      ? (currentTotal = shoppingCartItems
+          .map((x) => x.count)
+          .reduce((x, y) => x + y))
+      : (currentTotal = "");
+
+    console.log(currentTotal);
+    return <span>{currentTotal}</span>;
+  };
+
   const ShoppingCartBtn = () => {
     return (
       <div>
-        <div id="cart_total"></div>
+        <TotalInCart />
         <button onClick={openModal}>
           <img className="w-6 filter-white" alt="cart" src={cartLogo}></img>
         </button>

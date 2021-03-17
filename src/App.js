@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from "./components/Nav";
 import Home from "./components/Home";
@@ -41,8 +41,25 @@ const App = () => {
     }
 
     openModal();
-    //animation & visual of increase in total amount of items\
   };
+
+  const keyPress = useCallback(
+    (e) => {
+      if (e.key === "Escape" && showShoppingCart) {
+        setShowShoppingCart(false);
+      }
+    },
+    [showShoppingCart, setShowShoppingCart]
+  );
+
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted) document.addEventListener("keydown", keyPress);
+    return () => {
+      isMounted = false;
+      return document.removeEventListener("keydown", keyPress);
+    };
+  }, [keyPress]);
 
   return (
     <Router>

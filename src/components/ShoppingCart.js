@@ -19,28 +19,13 @@ const ShoppingCart = ({
   });
 
   const closeCart = (e) => {
-    if (modalRef.current === e.target) {
+    if (
+      modalRef.current === e.target ||
+      (e.key === "Escape" && showShoppingCart)
+    ) {
       setShowShoppingCart(false);
     }
   };
-
-  const keyPress = useCallback(
-    (e) => {
-      if (e.key === "Escape" && showShoppingCart) {
-        setShowShoppingCart(false);
-      }
-    },
-    [showShoppingCart, setShowShoppingCart]
-  );
-
-  useEffect(() => {
-    let isMounted = true;
-    if (isMounted) document.addEventListener("keydown", keyPress);
-    return () => {
-      isMounted = false;
-      return document.removeEventListener("keydown", keyPress);
-    };
-  }, [keyPress]);
 
   const handleClick = (e, i) => {
     const { id } = e.target;

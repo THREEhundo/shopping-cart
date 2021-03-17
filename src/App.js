@@ -1,12 +1,12 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import { useSpring, animated } from "react-spring";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from "./components/Nav";
 import Home from "./components/Home";
 import ProductsAll from "./components/ProductsAll";
 import ProductSingle from "./components/ProductSingle";
 import ShoppingCart from "./components/ShoppingCart";
-// import Search from "./components/Search";
 
 const App = () => {
   const [showShoppingCart, setShowShoppingCart] = useState(false);

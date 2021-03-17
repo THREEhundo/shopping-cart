@@ -165,7 +165,7 @@ const ShoppingCart = ({
         onClick={closeCart}
       >
         SHOPPING MODAL
-        <animated.div style={animation}>
+        <animated.div style={animation} className="h-full" id="animated">
           <div
             key="cartDrawer"
             id="cartDrawer"

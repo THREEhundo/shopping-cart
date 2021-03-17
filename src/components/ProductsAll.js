@@ -19,7 +19,7 @@ const ProductsAll = ({ handleClick }) => {
     [handleClick, data]
   );
 
-  function cardStructure(props) {
+  function CardStructure(props) {
     if (data) {
       const copy = data.map((x) => x);
       return copy.map((snkr) => {
@@ -59,14 +59,12 @@ const ProductsAll = ({ handleClick }) => {
     }
   }
 
-  const buildCards = cardStructure();
-
   return (
-    <div className="h-full my-10">
-      <div id="cards" className="">
+    <div className="h-full mt-10">
+      <div id="cards" className="pb-2">
         {isPending && <div>Loading...</div>}
         {error && <div>{error}</div>}
-        {data && buildCards}
+        {data && <CardStructure />}
       </div>
     </div>
   );

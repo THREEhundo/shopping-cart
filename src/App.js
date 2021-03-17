@@ -46,7 +46,7 @@ const App = () => {
 
   return (
     <Router>
-      <div className="bg-primary text-secondary">
+      <div className="bg-primary text-secondary h-auto">
         <ShoppingCart
           showShoppingCart={showShoppingCart}
           setShowShoppingCart={setShowShoppingCart}
@@ -69,12 +69,5 @@ const App = () => {
     </Router>
   );
 };
-
-// Data needed for Single product page
-//   1. image
-//   2. Shoe name
-//   3. Colorway
-//   4. Price
-//   5. Detailed description
 
 export default App;

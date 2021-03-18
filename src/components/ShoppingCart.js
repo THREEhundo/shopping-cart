@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useCallback, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import trashIcon from "../imgs/trash.svg";
 
@@ -7,6 +7,9 @@ const ShoppingCart = ({
   setShowShoppingCart,
   shoppingCartItems = [],
   setShoppingCartItems,
+  data,
+  error,
+  isPending,
 }) => {
   const modalRef = useRef();
 
@@ -27,54 +30,63 @@ const ShoppingCart = ({
     }
   };
 
-  const handleClick = (e, i) => {
-    const { id } = e.target;
+  const handleClick = useCallback(
+    (e, i) => {
+      const { id } = e.target;
 
-    const updatedCart = shoppingCartItems.map((item, j) => {
-      return j === i
-        ? id === "minus"
-          ? {
-              ...item,
-              count: item.count - 1,
-              total: (item.count - 1) * item.retailPrice,
-            }
-          : {
-              ...item,
-              count: item.count + 1,
-              total: (item.count + 1) * item.retailPrice,
-            }
-        : item;
-    });
+      const updatedCart = shoppingCartItems.map((item, j) => {
+        return j === i
+          ? id === "minus"
+            ? {
+                ...item,
+                count: item.count - 1,
+                total: (item.count - 1) * item.retailPrice,
+              }
+            : {
+                ...item,
+                count: item.count + 1,
+                total: (item.count + 1) * item.retailPrice,
+              }
+          : item;
+      });
 
-    const nonZero = updatedCart.filter((item) => item.count !== 0);
+      const nonZero = updatedCart.filter((item) => item.count !== 0);
 
-    setShoppingCartItems(nonZero);
-  };
+      setShoppingCartItems(nonZero);
+    },
+    [shoppingCartItems, setShoppingCartItems]
+  );
 
-  const handleChange = (e, i) => {
-    let { value, min, max } = e.target;
-    value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+  const handleChange = useCallback(
+    (e, i) => {
+      let { value, min, max } = e.target;
+      value = Math.max(Number(min), Math.min(Number(max), Number(value)));
 
-    const updatedCart = shoppingCartItems.map((item, j) => {
-      if (j === i) {
-        return { ...item, count: value, total: value * item.retailPrice };
-      } else {
-        return item;
+      const updatedCart = shoppingCartItems.map((item, j) => {
+        if (j === i) {
+          return { ...item, count: value, total: value * item.retailPrice };
+        } else {
+          return item;
+        }
+      });
+
+      if (value === 0) {
+        updatedCart.splice(i, 1);
+        return setShoppingCartItems(updatedCart);
       }
-    });
+      setShoppingCartItems(updatedCart);
+    },
+    [shoppingCartItems, setShoppingCartItems]
+  );
 
-    if (value === 0) {
-      updatedCart.splice(i, 1);
-      return setShoppingCartItems(updatedCart);
-    }
-    setShoppingCartItems(updatedCart);
-  };
-
-  const handleDelete = (i) => {
-    const delItem = shoppingCartItems.map((x) => x);
-    delItem.splice(i, 1);
-    return setShoppingCartItems(delItem);
-  };
+  const handleDelete = useCallback(
+    (i) => {
+      const delItem = shoppingCartItems.map((x) => x);
+      delItem.splice(i, 1);
+      return setShoppingCartItems(delItem);
+    },
+    [shoppingCartItems, setShoppingCartItems]
+  );
 
   const comma = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
@@ -91,6 +103,21 @@ const ShoppingCart = ({
       </div>
     );
   };
+
+  const keyPress = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (e.key === "Escape" && showShoppingCart) {
+        setShowShoppingCart(false);
+      }
+    },
+    [showShoppingCart, setShowShoppingCart]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", keyPress);
+    return () => document.removeEventListener("keydown", keyPress);
+  }, [keyPress]);
 
   const ItemsInCart = () => {
     const list = shoppingCartItems.map((item, index) => {

@@ -1,12 +1,8 @@
 import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
-import useFetch from "./useFetch";
+// import useFetch from "./useFetch";
 
-const ProductsAll = ({ handleClick }) => {
-  const { data, error, isPending } = useFetch(
-    "https://api.thesneakerdatabase.com/v1/sneakers?limit=50&name=air%20jordan%201%20high&brand=jordan"
-  );
-
+const ProductsAll = ({ handleClick, data, error, isPending }) => {
   const addToCart = useCallback(
     (e) => {
       const { id } = e.target.parentNode;

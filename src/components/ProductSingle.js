@@ -1,12 +1,14 @@
 import React, { useCallback } from "react";
 import { useParams } from "react-router-dom";
-import useFetch from "./useFetch";
 
-const ProductSingle = ({ handleClick, shoppingCartItems }) => {
+const ProductSingle = ({
+  handleClick,
+  shoppingCartItems,
+  data,
+  error,
+  isPending,
+}) => {
   const { linkID } = useParams();
-  const { data, error, isPending } = useFetch(
-    "https://api.thesneakerdatabase.com/v1/sneakers?limit=50&name=air%20jordan%201%20high&brand=jordan"
-  );
 
   const addToCart = useCallback(
     (e) => {

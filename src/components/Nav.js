@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../imgs/logo.png";
 import cartLogo from "../imgs/shopping-bag.png";
 
-const Nav = ({ openModal, shoppingCartItems = [] }) => {
+const Nav = ({ openCart, shoppingCartItems = [] }) => {
   const TotalInCart = () => {
     let currentTotal;
 
@@ -20,7 +20,7 @@ const Nav = ({ openModal, shoppingCartItems = [] }) => {
     return (
       <div>
         <TotalInCart />
-        <button onClick={openModal}>
+        <button onClick={openCart}>
           <img className="w-6 filter-white" alt="cart" src={cartLogo}></img>
         </button>
       </div>

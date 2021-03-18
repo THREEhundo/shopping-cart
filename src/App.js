@@ -1,18 +1,22 @@
 import "./App.css";
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from "./components/Nav";
 import Home from "./components/Home";
 import ProductsAll from "./components/ProductsAll";
 import ProductSingle from "./components/ProductSingle";
 import ShoppingCart from "./components/ShoppingCart";
+import useFetch from "./components/useFetch";
 
 const App = () => {
   const [showShoppingCart, setShowShoppingCart] = useState(false);
   const [shoppingCartItems, setShoppingCartItems] = useState([]);
-  // Shopping cart items -> id of item & amount of each
 
-  const openModal = () => {
+  const { data, error, isPending } = useFetch(
+    "https://api.thesneakerdatabase.com/v1/sneakers?limit=50&name=air%20jordan%201%20high&brand=jordan"
+  );
+
+  const openCart = () => {
     setShowShoppingCart((prev) => !prev);
   };
 
@@ -40,26 +44,8 @@ const App = () => {
       ]);
     }
 
-    openModal();
+    openCart();
   };
-
-  const keyPress = useCallback(
-    (e) => {
-      if (e.key === "Escape" && showShoppingCart) {
-        setShowShoppingCart(false);
-      }
-    },
-    [showShoppingCart, setShowShoppingCart]
-  );
-
-  useEffect(() => {
-    let isMounted = true;
-    if (isMounted) document.addEventListener("keydown", keyPress);
-    return () => {
-      isMounted = false;
-      return document.removeEventListener("keydown", keyPress);
-    };
-  }, [keyPress]);
 
   return (
     <Router>
@@ -69,17 +55,30 @@ const App = () => {
           setShowShoppingCart={setShowShoppingCart}
           shoppingCartItems={shoppingCartItems}
           setShoppingCartItems={setShoppingCartItems}
+          data={data}
+          error={error}
+          isPending={isPending}
         />
-        <Nav openModal={openModal} shoppingCartItems={shoppingCartItems} />
+        <Nav openCart={openCart} shoppingCartItems={shoppingCartItems} />
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
           <Route exact path="/catalogue">
-            <ProductsAll handleClick={handleClick} />
+            <ProductsAll
+              handleClick={handleClick}
+              data={data}
+              error={error}
+              isPending={isPending}
+            />
           </Route>
           <Route exact path="/catalogue/:linkID">
-            <ProductSingle handleClick={handleClick} />
+            <ProductSingle
+              handleClick={handleClick}
+              data={data}
+              error={error}
+              isPending={isPending}
+            />
           </Route>
         </Switch>
       </div>

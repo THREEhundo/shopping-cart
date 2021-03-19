@@ -28,7 +28,7 @@ const Nav = ({ toggleCart, shoppingCartItems = [] }) => {
   };
 
   return (
-    <nav className=" border-b-4 border-white">
+    <nav className="border-b-4 border-white">
       <div>
         <ul>
           <li className="ml-0 w-20">

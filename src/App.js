@@ -49,7 +49,7 @@ const App = () => {
 
   return (
     <Router>
-      <div className="bg-primary text-secondary h-auto">
+      <div className="bg-primary text-secondary h-screen container">
         <ShoppingCart
           showShoppingCart={showShoppingCart}
           setShowShoppingCart={setShowShoppingCart}

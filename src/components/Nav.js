@@ -28,7 +28,7 @@ const Nav = ({ toggleCart, shoppingCartItems = [] }) => {
   };
 
   return (
-    <nav className="border-b-4 border-white">
+    <nav className="border-b-2 border-white">
       <div>
         <ul>
           <li className="ml-0 w-20">
@@ -36,11 +36,11 @@ const Nav = ({ toggleCart, shoppingCartItems = [] }) => {
               <img src={logo} alt="logo"></img>
             </Link>
           </li>
-          <div className="float-right">
+          <div className="mt-3 float-right">
             <li className="mr-3">
               <Link to="/">Home</Link>
             </li>
-            <li className="mr-auto">
+            <li id="catalogueLink" className="mr-3">
               <Link to="/catalogue">Catalogue</Link>
             </li>
             <li>

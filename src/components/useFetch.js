@@ -53,6 +53,7 @@ const useFetch = (url) => {
         const res = await fetched.json();
         const parsed = parseData(res);
         const needed = neededProps(parsed);
+
         setData(needed);
         setIsPending(false);
         setError(null);
@@ -67,7 +68,10 @@ const useFetch = (url) => {
     }
     fetchData();
 
-    return () => abortCont.abort();
+    return () => {
+      console.log("Fetch Component Unmounted");
+      return abortCont.abort();
+    };
   }, [url]);
 
   return { data, isPending, error };

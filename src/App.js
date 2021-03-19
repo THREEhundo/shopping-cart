@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from "./components/Nav";
 import Home from "./components/Home";
@@ -16,9 +16,9 @@ const App = () => {
     "https://api.thesneakerdatabase.com/v1/sneakers?limit=50&name=air%20jordan%201%20high&brand=jordan"
   );
 
-  const openCart = () => {
+  const toggleCart = useCallback(() => {
     setShowShoppingCart((prev) => !prev);
-  };
+  }, [setShowShoppingCart]);
 
   // Click handler for all buy buttons
   const handleClick = (e, snkr) => {
@@ -44,7 +44,7 @@ const App = () => {
       ]);
     }
 
-    openCart();
+    toggleCart();
   };
 
   return (
@@ -58,8 +58,9 @@ const App = () => {
           data={data}
           error={error}
           isPending={isPending}
+          toggleCart={toggleCart}
         />
-        <Nav openCart={openCart} shoppingCartItems={shoppingCartItems} />
+        <Nav toggleCart={toggleCart} shoppingCartItems={shoppingCartItems} />
         <Switch>
           <Route exact path="/">
             <Home />

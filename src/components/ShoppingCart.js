@@ -10,25 +10,35 @@ const ShoppingCart = ({
   data,
   error,
   isPending,
+  cartState,
+  toggleCart,
 }) => {
   const modalRef = useRef();
 
-  const animation = useSpring({
+  const openCart = useSpring({
     config: {
       duration: 250,
     },
-    opactiy: showShoppingCart ? 1 : 0,
     transform: showShoppingCart ? "translateX(58.4%)" : "translateX(100%)",
+    opacity: showShoppingCart ? 1 : 0,
   });
 
-  const closeCart = (e) => {
-    if (
-      modalRef.current === e.target ||
-      (e.key === "Escape" && showShoppingCart)
-    ) {
-      setShowShoppingCart(false);
-    }
-  };
+  const closeCart = useCallback(
+    (e) => {
+      if (
+        modalRef.current === e.target ||
+        (e.key === "Escape" && showShoppingCart)
+      ) {
+        toggleCart();
+      }
+    },
+    [toggleCart, showShoppingCart]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", closeCart);
+    return () => document.removeEventListener("keydown", closeCart);
+  }, [closeCart]);
 
   const handleClick = useCallback(
     (e, i) => {
@@ -104,21 +114,6 @@ const ShoppingCart = ({
     );
   };
 
-  const keyPress = useCallback(
-    (e) => {
-      e.preventDefault();
-      if (e.key === "Escape" && showShoppingCart) {
-        setShowShoppingCart(false);
-      }
-    },
-    [showShoppingCart, setShowShoppingCart]
-  );
-
-  useEffect(() => {
-    document.addEventListener("keydown", keyPress);
-    return () => document.removeEventListener("keydown", keyPress);
-  }, [keyPress]);
-
   const ItemsInCart = () => {
     const list = shoppingCartItems.map((item, index) => {
       return (
@@ -169,11 +164,10 @@ const ShoppingCart = ({
       <div
         ref={modalRef}
         id="shoppingModal"
-        className="container h-full bg-opblack bg-black flex flex-col fixed"
+        className="container h-full w-full bg-opblack bg-black flex flex-col fixed"
         onClick={closeCart}
       >
-        SHOPPING MODAL
-        <animated.div style={animation} className="h-full" id="animated">
+        <animated.div style={openCart} className="h-full">
           <div
             id="cartDrawer"
             className="w-5/12 h-full bg-secondary self-end flex flex-wrap shadow-inner z-10 text-primary"

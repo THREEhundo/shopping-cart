@@ -12,6 +12,7 @@ const Home = () => {
         ? "translateY(0%)"
         : "translateY(300%)",
   });
+
   return (
     <div className="flex flex-column w-auto h-full">
       <div className="flex flex-column w-auto h-full overflow-y-hidden">

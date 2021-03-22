@@ -136,6 +136,7 @@ const ShoppingCart = ({
               max="20"
               type="number"
               onChange={(e) => handleChange(e, index)}
+              className="text-center appearance-none"
             ></input>
             <button id="plus" onClick={(e) => handleClick(e, index)}>
               +
@@ -156,7 +157,7 @@ const ShoppingCart = ({
         </li>
       );
     });
-    return <ul>{list}</ul>;
+    return <ul className="px-3">{list}</ul>;
   };
 
   const Modal = () => {

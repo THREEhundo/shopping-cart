@@ -13,6 +13,7 @@ module.exports = {
       DEFAULT: "0.25rem",
       lg: "0.5rem",
       xl: "2.75rem",
+      full: "9999px",
     },
     backgroundColor: (theme) => ({
       primary: "#ffc6c5",

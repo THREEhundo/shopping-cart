@@ -15,11 +15,11 @@ const Nav = ({ toggleCart, shoppingCartItems = [] }) => {
 
     return (
       <span
-        className={`${
-          shoppingCartItems instanceof Array && shoppingCartItems.length > 0
-            ? "border-2 rounded-lg"
-            : ""
-        } inline-block px-1 text-xs bg-secondary text-primary`}
+        className={`
+          ${currentTotal > 9 ? "w-6" : ""}
+          ${
+            currentTotal > 0 ? "border-2 rounded-full w-5" : ""
+          } inline-block px-1 text-xs bg-secondary text-primary`}
       >
         {currentTotal}
       </span>
@@ -28,7 +28,7 @@ const Nav = ({ toggleCart, shoppingCartItems = [] }) => {
 
   const ShoppingCartBtn = () => {
     return (
-      <div className="w-14">
+      <div className="w-18">
         <TotalInCart />
         <button className="my-auto align-bottom" onClick={toggleCart}>
           <img className="w-7 filter-white" alt="cart" src={cartLogo}></img>

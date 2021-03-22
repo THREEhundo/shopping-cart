@@ -5,10 +5,9 @@ import { Link } from "react-router-dom";
 const ProductsAll = ({ handleClick, data, error, isPending }) => {
   const addToCart = useCallback(
     (e) => {
-      const { id } = e.target.parentNode;
+      const { id } = e.target.parentNode.parentNode;
       const copy = data.map((x) => x);
       const snkr = copy.find((x) => x.id === id);
-      console.log(copy);
 
       handleClick(e, snkr);
     },

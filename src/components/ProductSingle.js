@@ -12,7 +12,7 @@ const ProductSingle = ({
 
   const addToCart = useCallback(
     (e) => {
-      const { id } = e.target.parentNode;
+      const { id } = e.target.parentNode.parentNode;
       const copy = data.map((x) => x);
       const snkr = copy.find((x) => x.id === id);
 

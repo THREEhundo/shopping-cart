@@ -68,12 +68,9 @@ const useFetch = (url) => {
     }
     fetchData();
 
-    return () => {
-      console.log("Fetch Component Unmounted");
-      return abortCont.abort();
-    };
+    return () => abortCont.abort();
   }, [url]);
-
+  console.log(data);
   return { data, isPending, error };
 };
 

@@ -164,7 +164,7 @@ const ShoppingCart = ({
       <div
         ref={modalRef}
         id="shoppingModal"
-        className="container h-full w-full bg-opblack bg-black flex flex-col fixed z-10"
+        className="h-full w-full bg-opblack bg-black flex flex-col fixed z-10"
         onClick={closeCart}
       >
         <animated.div style={openCart} className="h-full">

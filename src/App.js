@@ -23,7 +23,6 @@ const App = () => {
   // Click handler for all buy buttons
   const handleClick = (e, snkr) => {
     e.preventDefault();
-    console.log(snkr);
 
     if (shoppingCartItems.some((x) => x.name === snkr.name)) {
       const add = shoppingCartItems.map((item) => {

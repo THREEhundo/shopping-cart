@@ -46,7 +46,7 @@ const Nav = ({ toggleCart, shoppingCartItems = [] }) => {
               <img src={logo} alt="logo"></img>
             </Link>
           </li>
-          <div className="mt-3 flex ml-auto">
+          <div className="mt-3 mr-1 flex ml-auto">
             <li className="mr-3 text-2xl hover:underline">
               <Link to="/">Home</Link>
             </li>

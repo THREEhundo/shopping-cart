@@ -56,7 +56,7 @@ const ProductsAll = ({ handleClick, data, error, isPending }) => {
   };
 
   const Container = () => (
-    <div className="container mx-auto h-full mt-10 pb-1">
+    <div className="container mx-auto h-full mt-10 pb-8 bg-primary">
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
       {data && <CardStructure />}
@@ -64,7 +64,7 @@ const ProductsAll = ({ handleClick, data, error, isPending }) => {
   );
 
   return (
-    <div>
+    <div className="bg-primary pb-10">
       <Container />
     </div>
   );

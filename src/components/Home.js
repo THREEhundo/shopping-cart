@@ -13,8 +13,8 @@ const Home = () => {
         : "translateY(300%)",
   });
   return (
-    <div className="flex flex-column w-auto h-4/5">
-      <div className="flex-1 bg-hero-pattern bg-cover bg-center w-screen">
+    <div className="flex flex-column w-auto h-full">
+      <div className="flex-1 bg-hero-pattern bg-contain bg-fixed bg-no-repeat bg-center w-screen">
         <animated.div
           id="springUp"
           style={{ ...springUp, overflow: "hidden" }}
@@ -31,5 +31,8 @@ const Home = () => {
     </div>
   );
 };
-window.onload = () => (document.querySelector("#springUp").style = "springUp");
+window.onload = () =>
+  document.querySelector("#springUp")
+    ? (document.querySelector("#springUp").style = "springUp")
+    : "";
 export default Home;

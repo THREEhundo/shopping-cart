@@ -13,15 +13,25 @@ const Nav = ({ toggleCart, shoppingCartItems = [] }) => {
           .reduce((x, y) => x + y))
       : (currentTotal = "");
 
-    return <span>{currentTotal}</span>;
+    return (
+      <span
+        className={`${
+          shoppingCartItems instanceof Array && shoppingCartItems.length > 0
+            ? "border-2"
+            : ""
+        } inline-block px-1 rounded-full text-xs`}
+      >
+        {currentTotal}
+      </span>
+    );
   };
 
   const ShoppingCartBtn = () => {
     return (
-      <div>
+      <div className="w-12">
         <TotalInCart />
-        <button onClick={toggleCart}>
-          <img className="w-6 filter-white" alt="cart" src={cartLogo}></img>
+        <button className="my-auto align-bottom" onClick={toggleCart}>
+          <img className="w-7 filter-white" alt="cart" src={cartLogo}></img>
         </button>
       </div>
     );
@@ -30,17 +40,17 @@ const Nav = ({ toggleCart, shoppingCartItems = [] }) => {
   return (
     <nav className="border-b-2 border-white">
       <div>
-        <ul>
+        <ul className="flex">
           <li className="ml-0 w-20">
             <Link to="/">
               <img src={logo} alt="logo"></img>
             </Link>
           </li>
-          <div className="mt-3 float-right">
-            <li className="mr-3">
+          <div className="mt-3 flex ml-auto">
+            <li className="mr-3 text-2xl">
               <Link to="/">Home</Link>
             </li>
-            <li id="catalogueLink" className="mr-3">
+            <li id="catalogueLink" className="mr-3 text-2xl">
               <Link to="/catalogue">Catalogue</Link>
             </li>
             <li>

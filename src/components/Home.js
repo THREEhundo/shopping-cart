@@ -13,7 +13,11 @@ const Home = () => {
         : "translateY(300%)",
   });
   return (
+<<<<<<< HEAD
     <div className="flex flex-column w-auto h-full">
+=======
+    <div className="flex flex-column w-auto h-full overflow-y-hidden">
+>>>>>>> 1eef792a39c39fcc292dcad80686381c61173106
       <div className="flex-1 bg-hero-pattern bg-contain bg-fixed bg-no-repeat bg-center w-screen">
         <animated.div
           id="springUp"

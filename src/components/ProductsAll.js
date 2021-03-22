@@ -28,7 +28,7 @@ const ProductsAll = ({ handleClick, data, error, isPending }) => {
             <div className="text-center">
               <Link to={`/catalogue/${snkr.linkID}`}>
                 <img
-                  className="rounded-xl"
+                  className="rounded-xl transform hover:scale-90 duration-200 shadow-lg"
                   alt="snkrImg"
                   src={snkr.img.smallImg}
                 ></img>

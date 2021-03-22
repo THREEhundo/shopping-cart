@@ -18,7 +18,7 @@ const Home = () => {
         <animated.div
           id="springUp"
           style={{ ...springUp, overflow: "hidden" }}
-          className="z-0 w-80 absolute inset-x-0 bottom-10 my-5 mx-auto p-2 shadow-2xl border-4 border-white rounded opacity-0	"
+          className="z-0 w-80 absolute inset-x-0 bottom-28 bg-primary my-5 mx-auto p-2 shadow-2xl border-4 border-white rounded opacity-0	"
         >
           <h2 className="text-center text-3xl">Air Jordan 1</h2>
           <p className="text-sm text-justify">

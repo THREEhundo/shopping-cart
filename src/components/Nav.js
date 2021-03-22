@@ -17,9 +17,9 @@ const Nav = ({ toggleCart, shoppingCartItems = [] }) => {
       <span
         className={`${
           shoppingCartItems instanceof Array && shoppingCartItems.length > 0
-            ? "border-2"
+            ? "border-2 rounded-lg"
             : ""
-        } inline-block px-1 rounded-full text-xs`}
+        } inline-block px-1 text-xs bg-secondary text-primary`}
       >
         {currentTotal}
       </span>
@@ -28,7 +28,7 @@ const Nav = ({ toggleCart, shoppingCartItems = [] }) => {
 
   const ShoppingCartBtn = () => {
     return (
-      <div className="w-12">
+      <div className="w-14">
         <TotalInCart />
         <button className="my-auto align-bottom" onClick={toggleCart}>
           <img className="w-7 filter-white" alt="cart" src={cartLogo}></img>
@@ -50,10 +50,10 @@ const Nav = ({ toggleCart, shoppingCartItems = [] }) => {
             <li className="mr-3 text-2xl hover:underline">
               <Link to="/">Home</Link>
             </li>
-            <li id="catalogueLink" className="mr-3 text-2xl hover:underline">
+            <li id="catalogueLink" className="mr-2 text-2xl hover:underline">
               <Link to="/catalogue">Catalogue</Link>
             </li>
-            <li>
+            <li className="flex flex-nowrap justify-center self-center h-full">
               <ShoppingCartBtn />
             </li>
           </div>

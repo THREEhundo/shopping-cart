@@ -29,7 +29,7 @@ const ProductSingle = ({
       mod = (
         <div className="h-auto p-16" key={snkr.id} id={snkr.id}>
           <img
-            className="rounded-t-xl"
+            className="rounded-xl"
             alt="snkrImg"
             src={snkr.img.smallImg}
           ></img>

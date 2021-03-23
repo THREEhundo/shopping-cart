@@ -108,8 +108,11 @@ const ShoppingCart = ({
         ))
       : (due = 0);
     return (
-      <div id="total" className="text-3xl">
-        Total: ${due}
+      <div
+        id="total"
+        className="flex flex-auto items-center text-2xl text-right bg-primary text-secondary w-full pr-2 border-t-2 mt-2"
+      >
+        <div className="ml-auto">Total: ${due}</div>
       </div>
     );
   };
@@ -119,31 +122,42 @@ const ShoppingCart = ({
       return (
         <li key={item.id} id={item.id} className="text-primary">
           <img alt="cartItem" src={item.img.smallImg}></img>
-          <p>{item.name}</p>
-          <p>${item.retailPrice}</p>
-          <div>
+          <div className="flex flex-row flex-wrap ml-auto items-center">
+            <p className="text-lg">{item.name}</p>
+            <p className="text-lg">${item.retailPrice}</p>
+          </div>
+          <div className="flex flex-row flex-wrap items-center border-b bb-primary p-1">
+            <div className="w-full pb-1">
+              <div className="border-2 border-primary w-20 m-auto flex flex-row flex-nowrap">
+                <button
+                  id="minus"
+                  className="pl-2 flex-1"
+                  value={item.count}
+                  onClick={(e) => handleClick(e, index)}
+                >
+                  -
+                </button>
+                <input
+                  id="itemTotal"
+                  value={item.count}
+                  min="0"
+                  max="20"
+                  type="number"
+                  onChange={(e) => handleChange(e, index)}
+                  className="text-center appearance-none flex-1"
+                ></input>
+                <button
+                  id="plus"
+                  className="pr-2 flex-1"
+                  onClick={(e) => handleClick(e, index)}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <div className="">${comma(item.total)}</div>
             <button
-              id="minus"
-              value={item.count}
-              onClick={(e) => handleClick(e, index)}
-            >
-              -
-            </button>
-            <input
-              id="itemTotal"
-              value={item.count}
-              min="0"
-              max="20"
-              type="number"
-              onChange={(e) => handleChange(e, index)}
-              className="text-center appearance-none"
-            ></input>
-            <button id="plus" onClick={(e) => handleClick(e, index)}>
-              +
-            </button>
-            ${comma(item.total)}
-            <button
-              className="float-right"
+              className="ml-auto"
               onClick={() => handleDelete(index)}
               id="delete"
             >
@@ -157,7 +171,7 @@ const ShoppingCart = ({
         </li>
       );
     });
-    return <ul className="px-3">{list}</ul>;
+    return <ul className="px-3 h-auto">{list}</ul>;
   };
 
   const Modal = () => {
@@ -168,15 +182,18 @@ const ShoppingCart = ({
         className="h-full w-full bg-opblack bg-black flex flex-col fixed z-10"
         onClick={closeCart}
       >
-        <animated.div style={openCart} className="h-full">
+        <animated.div style={openCart} className="h-full overflow-y-auto">
           <div
             id="cartDrawer"
-            className="w-5/12 h-full bg-secondary self-end flex flex-wrap shadow-inner z-10 text-primary"
+            className="w-5/12 h-auto bg-secondary self-end flex flex-wrap shadow-inner z-10 text-primary"
           >
-            <h1 id="header" className="h-1/5 viewFont text-center flex-shrink">
+            <h1
+              id="header"
+              className="w-full h-auto text-4xl text-center text-secondary flex-auto bg-primary bt-primary"
+            >
               Shopping Cart
             </h1>
-            <div id="itemContainer" className="w-full h-3/5">
+            <div id="itemContainer" className="w-full h-auto">
               {shoppingCartItems.length > 0 ? (
                 [<ItemsInCart key="full" />]
               ) : (

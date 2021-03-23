@@ -34,9 +34,9 @@ const ProductSingle = ({
             src={snkr.img.smallImg}
           ></img>
           <div className="text-center">
-            <h2 className="text-3xl py-1">{snkr.shoe}</h2>
-            <h2 className="text-5xl py-1">"{snkr.name}"</h2>
-            <h2 className="text-3xl py-1">${snkr.retailPrice}</h2>
+            <h2 className="text-2xl py-1">{snkr.shoe}</h2>
+            <h2 className="text-4xl py-1 whitespace-nowrap">"{snkr.name}"</h2>
+            <h2 className="text-2xl py-1">${snkr.retailPrice}</h2>
             <p className="text-xs py-1">Released: {snkr.releaseDate}</p>
             <p className="text-xs m-auto w-64 py-1">
               Since his game-winning shot that brought championship glory to

@@ -7,6 +7,7 @@ const ProductSingle = ({
   data,
   error,
   isPending,
+  showShoppingCart,
 }) => {
   const { linkID } = useParams();
 
@@ -60,7 +61,11 @@ const ProductSingle = ({
   };
 
   return (
-    <div className="h-screen">
+    <div
+      className={`h-screen ${
+        showShoppingCart ? "overflow-hidden" : "overflow-hidden"
+      }`}
+    >
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
       {data && <PickSnkr />}

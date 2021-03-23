@@ -76,6 +76,7 @@ const App = () => {
           </Route>
           <Route exact path="/catalogue/:linkID">
             <ProductSingle
+              showShoppingCart={showShoppingCart}
               handleClick={handleClick}
               data={data}
               error={error}

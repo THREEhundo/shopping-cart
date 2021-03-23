@@ -61,11 +61,7 @@ const ProductSingle = ({
   };
 
   return (
-    <div
-      className={`h-screen ${
-        showShoppingCart ? "overflow-hidden" : "overflow-hidden"
-      }`}
-    >
+    <div className={`h-screen ${showShoppingCart ? "overflow-hidden" : ""}`}>
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
       {data && <PickSnkr />}

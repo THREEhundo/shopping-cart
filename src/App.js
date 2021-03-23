@@ -67,6 +67,7 @@ const App = () => {
           </Route>
           <Route exact path="/catalogue">
             <ProductsAll
+              showShoppingCart={showShoppingCart}
               handleClick={handleClick}
               data={data}
               error={error}

@@ -1,8 +1,13 @@
 import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
-// import useFetch from "./useFetch";
 
-const ProductsAll = ({ handleClick, data, error, isPending }) => {
+const ProductsAll = ({
+  handleClick,
+  data,
+  error,
+  isPending,
+  showShoppingCart,
+}) => {
   const addToCart = useCallback(
     (e) => {
       const { id } = e.target.parentNode.parentNode;
@@ -28,14 +33,14 @@ const ProductsAll = ({ handleClick, data, error, isPending }) => {
               <Link to={`/catalogue/${snkr.linkID}`}>
                 <div className="bg-secondary">
                   <img
-                    className="rounded-xl transform hover:scale-90 duration-200 hover:shadow-lg"
+                    className="rounded-xl mx-auto transform hover:scale-90 duration-200 hover:shadow-lg"
                     alt="snkrImg"
                     src={snkr.img.smallImg}
                   ></img>
                 </div>
               </Link>
               <h2 className="text-3xl">{snkr.shoe}</h2>
-              <h2 className="text-5xl">"{snkr.name}"</h2>
+              <h2 className="text-5xl whitespace-nowrap">"{snkr.name}"</h2>
               <h2 className="text-3xl">${snkr.retailPrice}</h2>
               <button
                 className="bg-secondary text-primary rounded-lg ring-4 ring-primary my-2 rounded-full py-1 px-2 hover:text-secondary hover:bg-primary hover:ring-secondary focus:outline-none focus:bg-primary focus:ring-secondary focus:text-secondary"
@@ -51,7 +56,7 @@ const ProductsAll = ({ handleClick, data, error, isPending }) => {
   };
 
   const Container = () => (
-    <div className="container mx-auto h-full mt-10 pb-8 bg-primary">
+    <div className=" mx-auto h-full mt-10 pb-8 bg-primary md:w-full md:grid md:mx-auto md:grid-cols-2 md:grid-flow-cols md:auto-cols-max xl:grid-cols-3">
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
       {data && <CardStructure />}
@@ -59,7 +64,11 @@ const ProductsAll = ({ handleClick, data, error, isPending }) => {
   );
 
   return (
-    <div className="bg-primary pb-10">
+    <div
+      className={`bg-primary pb-10 ${
+        showShoppingCart ? "overflow-hidden" : ""
+      }`}
+    >
       <Container />
     </div>
   );

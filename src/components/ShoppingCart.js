@@ -110,7 +110,7 @@ const ShoppingCart = ({
     return (
       <div
         id="total"
-        className="flex flex-auto items-center text-2xl text-right bg-primary text-secondary w-full pr-2 border-t-2 mt-2"
+        className="flex flex-auto self-end items-center text-2xl text-right bg-primary text-secondary w-full pr-2 border-t-2 pt-2"
       >
         <div className="ml-auto">Total: ${due}</div>
       </div>
@@ -171,7 +171,7 @@ const ShoppingCart = ({
         </li>
       );
     });
-    return <ul className="px-3 h-auto">{list}</ul>;
+    return <ul className="flex-1 px-3 h-auto pb-1">{list}</ul>;
   };
 
   const Modal = () => {
@@ -185,15 +185,18 @@ const ShoppingCart = ({
         <animated.div style={openCart} className="h-full overflow-y-auto">
           <div
             id="cartDrawer"
-            className="w-5/12 h-auto bg-secondary self-end flex flex-wrap shadow-inner z-10 text-primary"
+            className="w-5/12 h-screen bg-secondary self-end flex flex-wrap items-stretch shadow-inner z-10 text-primary"
           >
             <h1
               id="header"
-              className="w-full h-auto text-4xl text-center text-secondary flex-auto bg-primary bt-primary"
+              className="w-full h-10 text-4xl text-center text-secondary bg-primary bt-primary"
             >
               Shopping Cart
             </h1>
-            <div id="itemContainer" className="w-full h-auto">
+            <div
+              id="itemContainer"
+              className="flex flex-1 bg-secondary w-full h-auto"
+            >
               {shoppingCartItems.length > 0 ? (
                 [<ItemsInCart key="full" />]
               ) : (
